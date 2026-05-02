@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <title>Conquête des Territoires</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-  <!-- ================================================
+<body>
+  <!--
+  ================================================
        MODAL : Lancer de dés initial
   ================================================ -->
+
   <div id="modal-de" class="modal-overlay">
     <div class="modal-boite">
       <h2 class="modal-titre">⚔ CONQUÊTE DES TERRITOIRES ⚔</h2>
@@ -17,7 +23,6 @@
 
       <div class="modal-des">
 
-        <!-- Dé Joueur 1 -->
         <div class="modal-joueur">
           <div class="modal-nom-j1">👑 Joueur 1</div>
           <div class="de-face" id="de-j1">
@@ -27,10 +32,10 @@
           <button class="bouton-lancer" id="btn-j1" onclick="lancerDe(1)">🎲 Lancer</button>
         </div>
 
-        <!-- VS -->
+
         <div class="modal-vs">VS</div>
 
-        <!-- Dé Joueur 2 -->
+
         <div class="modal-joueur">
           <div class="modal-nom-j2">Joueur 2 👑</div>
           <div class="de-face" id="de-j2">
@@ -50,6 +55,9 @@
   <!-- ================================================
        HEADER
   ================================================ -->
+
+
+
   <header class="header">
 
     <div class="bandeau bandeau-j1">
@@ -435,6 +443,7 @@
 
 
   <script src="game.js"></script>
-
+  <script src="deplacement.js"></script>
 </body>
+
 </html>

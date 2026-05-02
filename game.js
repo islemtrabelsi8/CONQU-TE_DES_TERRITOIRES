@@ -248,3 +248,5 @@ function ajouterHistorique(texte) {
   liste.appendChild(entree);
   liste.scrollTop = liste.scrollHeight;
 }
+
+

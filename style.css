@@ -2,7 +2,27 @@
    FICHIER CSS : style.css
    Jeu : Conquête des Territoires
 ===================================================== */
-
+:root {
+  --parch: #F5EDD6;
+  --parch2: #EFE3C2;
+  --parch3: #E8D5A8;
+  --ink: #2A1F0E;
+  --ink2: #4A3520;
+  --ink3: #7A6040;
+  --rose1: #8B3A52;
+  --rose2: #C4607F;
+  --rose3: #E8A0B4;
+  --rose4: #F5D8E2;
+  --sage1: #2E4A3A;
+  --sage2: #4A7A5C;
+  --sage3: #8AB89A;
+  --sage4: #D8EDE0;
+  --gold1: #7A5010;
+  --gold2: #C4880A;
+  --gold3: #E8C060;
+  --gold4: #FBF0D0;
+  --border-ink: rgba(42, 31, 14, 0.18);
+}
 
 /* =====================================================
    1. STYLES GLOBAUX
@@ -15,9 +35,10 @@
 }
 
 body {
-  background-color: #13100c;
-  color: #e8dcc0;
-  font-family: Georgia, serif;
+
+  background: var(--parch);
+  font-family: 'Crimson Pro', serif;
+  color: var(--ink);
   font-size: 14px;
   height: 100vh;
   overflow: hidden;
@@ -32,9 +53,11 @@ body {
 
 .modal-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,25 +65,25 @@ body {
 }
 
 .modal-boite {
-  background-color: #1c1610;
-  border: 2px solid #c9a227;
+  background-color: var(--parch3);
+  border: 2px solid var(--gold2);
   border-radius: 12px;
   padding: 30px 40px;
   text-align: center;
   min-width: 500px;
-  box-shadow: 0 0 40px rgba(201, 162, 39, 0.3);
+  box-shadow: 0 0 40px rgba(201, 162, 39, 0.25);
 }
 
 .modal-titre {
   font-size: 20px;
-  color: #c9a227;
+  color: var(--gold2);
   letter-spacing: 2px;
   margin-bottom: 8px;
 }
 
 .modal-sous-titre {
   font-size: 13px;
-  color: #8a7a5a;
+  color: var(--ink3);
   margin-bottom: 28px;
   font-style: italic;
 }
@@ -83,19 +106,19 @@ body {
 .modal-nom-j1 {
   font-size: 15px;
   font-weight: bold;
-  color: #8fce60;
+  color: var(--sage3);
 }
 
 .modal-nom-j2 {
   font-size: 15px;
   font-weight: bold;
-  color: #e07070;
+  color: var(--rose2);
 }
 
 .modal-vs {
   font-size: 24px;
   font-weight: bold;
-  color: #c9a227;
+  color: var(--gold2);
   opacity: 0.6;
 }
 
@@ -115,8 +138,8 @@ body {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  background-color: #1c1610;
-  border-bottom: 2px solid #c9a227;
+  background-color: var(--parch2);
+  border-bottom: 2px solid var(--gold2);
   padding: 6px 12px;
   flex-shrink: 0;
 }
@@ -133,15 +156,15 @@ body {
 }
 
 .bandeau-j1 {
-  background-color: #1a4010;
-  border: 1px solid #2a7020;
-  color: #8fce60;
+  background-color: var(--sage2);
+  border: 1px solid var(--sage4);
+  color: var(--sage4);
 }
 
 .bandeau-j2 {
-  background-color: #3a0a0a;
-  border: 1px solid #7a2020;
-  color: #e07070;
+  background-color: var(--rose3);
+  border: 1px solid var(--rose4);
+  color: var(--parch);
   justify-content: flex-end;
 }
 
@@ -156,7 +179,7 @@ body {
 
 .titre-jeu {
   font-size: 20px;
-  color: #c9a227;
+  color: var(--gold2);
   letter-spacing: 2px;
 }
 
@@ -170,18 +193,18 @@ body {
 
 .numero-tour {
   font-size: 12px;
-  color: #8a7a5a;
-  background-color: #1c1610;
-  border: 1px solid #3a2e1e;
+  color: var(--ink3);
+  background-color: var(--parch);
+  border: 1px solid var(--parch3);
   padding: 2px 12px;
   border-radius: 4px;
 }
 
 .phase-actuelle {
   font-size: 12px;
-  color: #c9a227;
-  background-color: #2a1e00;
-  border: 1px solid #c9a227;
+  color: var(--gold2);
+  background-color: var(--parch3);
+  border: 1px solid var(--gold2);
   padding: 2px 12px;
   border-radius: 4px;
 }
@@ -204,18 +227,18 @@ body {
 ===================================================== */
 
 .panneau {
-  background-color: #1c1610;
+  background-color: var(--parch2);
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
 .panneau-j1 {
-  border-right: 2px solid #3a2e1e;
+  border-right: 2px solid var(--parch3);
 }
 
 .panneau-j2 {
-  border-left: 2px solid #3a2e1e;
+  border-left: 2px solid var(--parch3);
 }
 
 .info-joueur {
@@ -223,15 +246,15 @@ body {
   align-items: center;
   gap: 10px;
   padding: 10px;
-  border-bottom: 2px solid #3a2e1e;
+  border-bottom: 2px solid var(--parch3);
 }
 
 .info-joueur-j1 {
-  background-color: #0a1c06;
+  background-color: var(--sage4);
 }
 
 .info-joueur-j2 {
-  background-color: #1c0606;
+  background-color: var(--rose4);
 }
 
 .portrait {
@@ -246,13 +269,13 @@ body {
 }
 
 .portrait-j1 {
-  background-color: #0a2206;
-  border: 2px solid #2a7020;
+  background-color: var(--sage3);
+  border: 2px solid var(--sage2);
 }
 
 .portrait-j2 {
-  background-color: #2a0808;
-  border: 2px solid #7a2020;
+  background-color: var(--rose3);
+  border: 2px solid var(--rose2);
 }
 
 .stats-joueur {
@@ -265,16 +288,21 @@ body {
   margin-bottom: 4px;
 }
 
-.nom-j1 { color: #8fce60; }
-.nom-j2 { color: #e07070; }
+.nom-j1 {
+  color: var(--sage3);
+}
+
+.nom-j2 {
+  color: var(--rose2);
+}
 
 .stat-ligne {
   font-size: 12px;
-  color: #8a7a5a;
+  color: var(--ink3);
 }
 
 .stat-valeur {
-  color: #e8dcc0;
+  color: var(--ink3);
   font-weight: bold;
 }
 
@@ -285,7 +313,7 @@ body {
 
 .section {
   padding: 8px 10px;
-  border-bottom: 1px solid #3a2e1e;
+  border-bottom: 1px solid var(--ink2);
   flex-shrink: 0;
 }
 
@@ -305,7 +333,7 @@ body {
 .section-titre {
   font-size: 10px;
   font-weight: bold;
-  color: #c9a227;
+  color: var(--gold2);
   letter-spacing: 2px;
   margin-bottom: 6px;
 }
@@ -317,7 +345,7 @@ body {
   align-items: center;
   gap: 8px;
   padding: 5px 0;
-  border-bottom: 1px solid #2a2010;
+  border-bottom: 1px solid var(--ink2);
 }
 
 .unite-ligne:last-child {
@@ -336,13 +364,13 @@ body {
 }
 
 .icone-j1 {
-  background-color: #0d2508;
-  border: 1px solid #2a7020;
+  background-color: var(--sage1);
+  border: 1px solid var(--sage2);
 }
 
 .icone-j2 {
-  background-color: #250808;
-  border: 1px solid #7a2020;
+  background-color: var(--rose1);
+  border: 1px solid var(--rose2);
 }
 
 .unite-details {
@@ -352,12 +380,12 @@ body {
 .unite-nom {
   font-size: 13px;
   font-weight: bold;
-  color: #e8dcc0;
+  color: var(--ink3);
 }
 
 .unite-info {
   font-size: 11px;
-  color: #8a7a5a;
+  color: var(--ink3);
 }
 
 .unite-compteur {
@@ -369,9 +397,9 @@ body {
   justify-content: center;
   font-size: 13px;
   font-weight: bold;
-  background-color: #2a2010;
-  color: #c9a227;
-  border: 1px solid #3a2e1e;
+  background-color: var(--parch3);
+  color: var(--ink);
+  border: 1px solid var(--parch2);
 }
 
 /* ── Sélecteur d'unité ── */
@@ -391,21 +419,21 @@ body {
   gap: 3px;
   padding: 8px 4px;
   border-radius: 6px;
-  background-color: #1e1810;
-  border: 1px solid #3a2e1e;
+  background-color: var(--parch3);
+  border: 1px solid var(--parch2);
   cursor: pointer;
   transition: background-color 0.15s, border-color 0.15s;
 }
 
 .choix-unite-btn:hover {
-  background-color: #2a2010;
-  border-color: #c9a227;
+  background-color: var(--parch2);
+  border-color: var(--gold2);
 }
 
 /* Bouton sélectionné (unité choisie) */
 .choix-selectionne {
-  background-color: #2a2010 !important;
-  border-color: #c9a227 !important;
+  background-color: var(--gold4) !important;
+  border-color: var(--gold2) !important;
   box-shadow: 0 0 6px rgba(201, 162, 39, 0.4);
 }
 
@@ -415,13 +443,13 @@ body {
 
 .choix-label {
   font-size: 10px;
-  color: #8a7a5a;
+  color: var(--ink3);
   letter-spacing: 1px;
 }
 
 .choix-message {
   font-size: 11px;
-  color: #8a7a5a;
+  color: var(--ink3);
   font-style: italic;
   text-align: center;
   min-height: 14px;
@@ -440,14 +468,14 @@ body {
   align-items: center;
   gap: 5px;
   font-size: 11px;
-  color: #8a7a5a;
+  color: var(--ink3);
 }
 
 .legende-couleur {
   width: 18px;
   height: 18px;
   border-radius: 3px;
-  border: 1px solid #555;
+  border: 1px solid var(--ink2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -455,20 +483,56 @@ body {
   flex-shrink: 0;
 }
 
-.couleur-j1        { background-color: #3a6e22; border-color: #4a9e30; }
-.couleur-j2        { background-color: #7a2020; border-color: #9e3030; }
-.couleur-neutre    { background-color: #c9b07a; border-color: #a08c5a; }
-.couleur-bonus-atk { background-color: #b8860b; border-color: #d4a010; color: #fff; }
-.couleur-bonus-def { background-color: #1a4a7a; border-color: #2060aa; color: #fff; }
-.couleur-piege     { background-color: #4a2a0a; border-color: #7a5020; color: #ccc; }
-.couleur-montagne  { background-color: #5a5040; border-color: #7a6a50; color: #ccc; }
-.couleur-eau       { background-color: #1a3a5a; border-color: #2060aa; color: #adf; }
+.couleur-j1 {
+  background-color: var(--sage2);
+  border-color: var(--sage3);
+}
+
+.couleur-j2 {
+  background-color: var(--rose1);
+  border-color: var(--rose2);
+}
+
+.couleur-neutre {
+  background-color: var(--gold3);
+  border-color: var(--gold1);
+}
+
+.couleur-bonus-atk {
+  background-color: var(--gold2);
+  border-color: var(--gold3);
+  color: var(--parch);
+}
+
+.couleur-bonus-def {
+  background-color: var(--sage2);
+  border-color: var(--sage3);
+  color: var(--parch);
+}
+
+.couleur-piege {
+  background-color: var(--ink2);
+  border-color: var(--gold1);
+  color: var(--parch3);
+}
+
+.couleur-montagne {
+  background-color: var(--ink3);
+  border-color: var(--gold1);
+  color: var(--parch3);
+}
+
+.couleur-eau {
+  background-color: var(--ink2);
+  border-color: var(--sage3);
+  color: var(--parch2);
+}
 
 /* ── Statut ── */
 
 .statut-message {
   font-size: 12px;
-  color: #c9a227;
+  color: var(--gold2);
   font-style: italic;
   text-align: center;
   padding: 4px 0;
@@ -483,9 +547,9 @@ body {
 
 .historique-entree {
   font-size: 11px;
-  color: #8a7a5a;
+  color: var(--ink3);
   padding: 3px 0;
-  border-bottom: 1px solid #1e1810;
+  border-bottom: 1px solid var(--parch3);
 }
 
 .historique-entree:last-child {
@@ -502,13 +566,13 @@ body {
   align-items: center;
   justify-content: center;
   padding: 10px;
-  background-color: #13100c;
+  background-color: var(--parch);
   overflow: hidden;
 }
 
 .grille-conteneur {
-  background-color: #1a1408;
-  border: 2px solid #4a3820;
+  background-color: var(--parch2);
+  border: 2px solid var(--gold1);
   border-radius: 6px;
   padding: 8px;
 }
@@ -528,7 +592,7 @@ body {
   width: 66px;
   text-align: center;
   font-size: 11px;
-  color: #8a7a5a;
+  color: var(--ink3);
 }
 
 .ligne-grille {
@@ -542,7 +606,7 @@ body {
   text-align: right;
   padding-right: 4px;
   font-size: 11px;
-  color: #8a7a5a;
+  color: var(--ink3);
   flex-shrink: 0;
 }
 
@@ -552,7 +616,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #3a2e1a;
+  border: 1px solid var(--parch3);
   border-radius: 3px;
   margin: 1px;
   cursor: pointer;
@@ -560,22 +624,47 @@ body {
 }
 
 .case:hover {
-  border-color: #c9a227;
+  border-color: var(--gold2);
   filter: brightness(1.2);
 }
 
 /* Types de cases */
-.neutre        { background-color: #c9b07a; }
-.zone-j1       { background-color: #3a6e22; }
-.zone-j2       { background-color: #7a2020; }
-.bonus-attaque { background-color: #b8860b; }
-.bonus-defense { background-color: #1a4a7a; }
-.piege         { background-color: #4a2a0a; }
-.montagne      { background-color: #5a5040; cursor: not-allowed; }
-.eau           { background-color: #1a3a5a; cursor: not-allowed; }
+.neutre {
+  background-color: var(--gold3);
+}
+
+.zone-j1 {
+  background-color: var(--sage2);
+}
+
+.zone-j2 {
+  background-color: var(--rose1);
+}
+
+.bonus-attaque {
+  background-color: var(--gold2);
+}
+
+.bonus-defense {
+  background-color: var(--sage2);
+}
+
+.piege {
+  background-color: var(--ink2);
+}
+
+.montagne {
+  background-color: var(--ink3);
+  cursor: not-allowed;
+}
+
+.eau {
+  background-color: var(--ink2);
+  cursor: not-allowed;
+}
 
 .case-selectionnee {
-  border: 2px solid #c9a227 !important;
+  border: 2px solid var(--gold2) !important;
   box-shadow: 0 0 8px rgba(201, 162, 39, 0.4);
 }
 
@@ -594,17 +683,17 @@ body {
   justify-content: center;
   font-size: 24px;
   border: 2px solid;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .jeton-j1 {
-  background-color: #1a3d0e;
-  border-color: #4a9e30;
+  background-color: var(--sage1);
+  border-color: var(--sage2);
 }
 
 .jeton-j2 {
-  background-color: #3d0e0e;
-  border-color: #9e3030;
+  background-color: var(--rose1);
+  border-color: var(--rose2);
 }
 
 /* ── Dé (dans le modal) ── */
@@ -612,28 +701,47 @@ body {
 .de-face {
   width: 70px;
   height: 70px;
-  background-color: #f5f0e8;
+  background-color: var(--parch);
   border-radius: 10px;
-  border: 3px solid #cccccc;
+  border: 3px solid var(--parch2);
   position: relative;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
 
 .de-point {
   width: 11px;
   height: 11px;
-  background-color: #1c1610;
+  background-color: var(--ink);
   border-radius: 50%;
   position: absolute;
 }
 
-.point-h1 { top: 10px; }
-.point-h2 { top: 50%; transform: translateY(-50%); }
-.point-h3 { bottom: 10px; }
-.point-c1 { left: 10px; }
-.point-c2 { left: 50%; transform: translateX(-50%); }
-.point-c3 { right: 10px; }
+.point-h1 {
+  top: 10px;
+}
+
+.point-h2 {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.point-h3 {
+  bottom: 10px;
+}
+
+.point-c1 {
+  left: 10px;
+}
+
+.point-c2 {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.point-c3 {
+  right: 10px;
+}
 
 .point-h2.point-c2,
 .de-point.centre {
@@ -643,7 +751,7 @@ body {
 }
 
 .de-chiffre {
-  color: #c9a227;
+  color: var(--gold2);
   font-size: 20px;
   font-weight: bold;
 }
@@ -652,9 +760,9 @@ body {
   width: 100%;
   padding: 6px 14px;
   border-radius: 5px;
-  background-color: #2a1e00;
-  border: 1px solid #c9a227;
-  color: #c9a227;
+  background-color: var(--gold3);
+  border: 1px solid var(--gold2);
+  color: var(--ink);
   font-size: 12px;
   font-weight: bold;
   letter-spacing: 1px;
@@ -663,7 +771,7 @@ body {
 }
 
 .bouton-lancer:hover {
-  background-color: #3a2e00;
+  background-color: var(--gold2);
 }
 
 .bouton-lancer:disabled {
@@ -679,15 +787,15 @@ body {
 .barre-bas {
   display: grid;
   grid-template-columns: 280px 1fr 280px;
-  border-top: 2px solid #3a2e1e;
-  background-color: #13100c;
+  border-top: 2px solid var(--parch3);
+  background-color: var(--parch2);
   min-height: 100px;
   flex-shrink: 0;
 }
 
 .panneau-unite-selectionnee {
-  background-color: #1c1610;
-  border-right: 2px solid #3a2e1e;
+  background-color: var(--parch2);
+  border-right: 2px solid var(--parch3);
   padding: 10px 12px;
 }
 
@@ -706,8 +814,8 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 30px;
-  background-color: #0d2508;
-  border: 2px solid #4a9e30;
+  background-color: var(--sage1);
+  border: 2px solid var(--sage2);
   flex-shrink: 0;
 }
 
@@ -718,13 +826,13 @@ body {
 .unite-sel-nom {
   font-size: 15px;
   font-weight: bold;
-  color: #e8dcc0;
+  color: var(--parch3);
   margin-bottom: 2px;
 }
 
 .unite-sel-stat {
   font-size: 12px;
-  color: #8a7a5a;
+  color: var(--ink3);
 }
 
 .unite-sel-statut {
@@ -733,20 +841,27 @@ body {
   gap: 5px;
   margin-top: 5px;
   font-size: 12px;
-  color: #c9a227;
+  color: var(--gold2);
 }
 
 .point-statut {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #c9a227;
+  background-color: var(--gold2);
   animation: clignoter 1.5s infinite;
 }
 
 @keyframes clignoter {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.3; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
 }
 
 .panneau-actions {
@@ -760,11 +875,11 @@ body {
 
 .actions-message {
   font-size: 13px;
-  color: #c9a227;
+  color: var(--ink3);
   font-style: italic;
   text-align: center;
 }
 
 .barre-bas-droite {
-  border-left: 2px solid #3a2e1e;
+  border-left: 2px solid var(--parch3);
 }
