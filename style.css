@@ -1,0 +1,770 @@
+/* =====================================================
+   FICHIER CSS : style.css
+   Jeu : Conquête des Territoires
+===================================================== */
+
+
+/* =====================================================
+   1. STYLES GLOBAUX
+===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #13100c;
+  color: #e8dcc0;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* =====================================================
+   2. MODAL : Lancer de dés initial
+===================================================== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-boite {
+  background-color: #1c1610;
+  border: 2px solid #c9a227;
+  border-radius: 12px;
+  padding: 30px 40px;
+  text-align: center;
+  min-width: 500px;
+  box-shadow: 0 0 40px rgba(201, 162, 39, 0.3);
+}
+
+.modal-titre {
+  font-size: 20px;
+  color: #c9a227;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.modal-sous-titre {
+  font-size: 13px;
+  color: #8a7a5a;
+  margin-bottom: 28px;
+  font-style: italic;
+}
+
+.modal-des {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.modal-joueur {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-nom-j1 {
+  font-size: 15px;
+  font-weight: bold;
+  color: #8fce60;
+}
+
+.modal-nom-j2 {
+  font-size: 15px;
+  font-weight: bold;
+  color: #e07070;
+}
+
+.modal-vs {
+  font-size: 24px;
+  font-weight: bold;
+  color: #c9a227;
+  opacity: 0.6;
+}
+
+.modal-resultat {
+  font-size: 16px;
+  font-weight: bold;
+  min-height: 24px;
+  margin-top: 10px;
+}
+
+
+/* =====================================================
+   3. HEADER
+===================================================== */
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  background-color: #1c1610;
+  border-bottom: 2px solid #c9a227;
+  padding: 6px 12px;
+  flex-shrink: 0;
+}
+
+.bandeau {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.bandeau-j1 {
+  background-color: #1a4010;
+  border: 1px solid #2a7020;
+  color: #8fce60;
+}
+
+.bandeau-j2 {
+  background-color: #3a0a0a;
+  border: 1px solid #7a2020;
+  color: #e07070;
+  justify-content: flex-end;
+}
+
+.couronne {
+  font-size: 18px;
+}
+
+.titre-centre {
+  text-align: center;
+  padding: 4px 20px;
+}
+
+.titre-jeu {
+  font-size: 20px;
+  color: #c9a227;
+  letter-spacing: 2px;
+}
+
+.info-tour {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.numero-tour {
+  font-size: 12px;
+  color: #8a7a5a;
+  background-color: #1c1610;
+  border: 1px solid #3a2e1e;
+  padding: 2px 12px;
+  border-radius: 4px;
+}
+
+.phase-actuelle {
+  font-size: 12px;
+  color: #c9a227;
+  background-color: #2a1e00;
+  border: 1px solid #c9a227;
+  padding: 2px 12px;
+  border-radius: 4px;
+}
+
+
+/* =====================================================
+   4. CONTENU PRINCIPAL
+===================================================== */
+
+.contenu-principal {
+  display: grid;
+  grid-template-columns: 280px 1fr 280px;
+  flex: 1;
+  overflow: hidden;
+}
+
+
+/* =====================================================
+   5. PANNEAUX LATÉRAUX
+===================================================== */
+
+.panneau {
+  background-color: #1c1610;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panneau-j1 {
+  border-right: 2px solid #3a2e1e;
+}
+
+.panneau-j2 {
+  border-left: 2px solid #3a2e1e;
+}
+
+.info-joueur {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 2px solid #3a2e1e;
+}
+
+.info-joueur-j1 {
+  background-color: #0a1c06;
+}
+
+.info-joueur-j2 {
+  background-color: #1c0606;
+}
+
+.portrait {
+  width: 52px;
+  height: 52px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.portrait-j1 {
+  background-color: #0a2206;
+  border: 2px solid #2a7020;
+}
+
+.portrait-j2 {
+  background-color: #2a0808;
+  border: 2px solid #7a2020;
+}
+
+.stats-joueur {
+  flex: 1;
+}
+
+.nom-joueur {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.nom-j1 { color: #8fce60; }
+.nom-j2 { color: #e07070; }
+
+.stat-ligne {
+  font-size: 12px;
+  color: #8a7a5a;
+}
+
+.stat-valeur {
+  color: #e8dcc0;
+  font-weight: bold;
+}
+
+
+/* =====================================================
+   6. SECTIONS
+===================================================== */
+
+.section {
+  padding: 8px 10px;
+  border-bottom: 1px solid #3a2e1e;
+  flex-shrink: 0;
+}
+
+.section-historique {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Section désactivée (pas le tour de ce joueur) */
+.section-inactive {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.section-titre {
+  font-size: 10px;
+  font-weight: bold;
+  color: #c9a227;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+/* ── Unités ── */
+
+.unite-ligne {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid #2a2010;
+}
+
+.unite-ligne:last-child {
+  border-bottom: none;
+}
+
+.unite-icone {
+  width: 36px;
+  height: 36px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.icone-j1 {
+  background-color: #0d2508;
+  border: 1px solid #2a7020;
+}
+
+.icone-j2 {
+  background-color: #250808;
+  border: 1px solid #7a2020;
+}
+
+.unite-details {
+  flex: 1;
+}
+
+.unite-nom {
+  font-size: 13px;
+  font-weight: bold;
+  color: #e8dcc0;
+}
+
+.unite-info {
+  font-size: 11px;
+  color: #8a7a5a;
+}
+
+.unite-compteur {
+  min-width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: #2a2010;
+  color: #c9a227;
+  border: 1px solid #3a2e1e;
+}
+
+/* ── Sélecteur d'unité ── */
+
+.choix-unites {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+/* Bouton de choix d'unité */
+.choix-unite-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 4px;
+  border-radius: 6px;
+  background-color: #1e1810;
+  border: 1px solid #3a2e1e;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.choix-unite-btn:hover {
+  background-color: #2a2010;
+  border-color: #c9a227;
+}
+
+/* Bouton sélectionné (unité choisie) */
+.choix-selectionne {
+  background-color: #2a2010 !important;
+  border-color: #c9a227 !important;
+  box-shadow: 0 0 6px rgba(201, 162, 39, 0.4);
+}
+
+.choix-icone {
+  font-size: 22px;
+}
+
+.choix-label {
+  font-size: 10px;
+  color: #8a7a5a;
+  letter-spacing: 1px;
+}
+
+.choix-message {
+  font-size: 11px;
+  color: #8a7a5a;
+  font-style: italic;
+  text-align: center;
+  min-height: 14px;
+}
+
+/* ── Légende ── */
+
+.legende-grille {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px 8px;
+}
+
+.legende-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #8a7a5a;
+}
+
+.legende-couleur {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  border: 1px solid #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.couleur-j1        { background-color: #3a6e22; border-color: #4a9e30; }
+.couleur-j2        { background-color: #7a2020; border-color: #9e3030; }
+.couleur-neutre    { background-color: #c9b07a; border-color: #a08c5a; }
+.couleur-bonus-atk { background-color: #b8860b; border-color: #d4a010; color: #fff; }
+.couleur-bonus-def { background-color: #1a4a7a; border-color: #2060aa; color: #fff; }
+.couleur-piege     { background-color: #4a2a0a; border-color: #7a5020; color: #ccc; }
+.couleur-montagne  { background-color: #5a5040; border-color: #7a6a50; color: #ccc; }
+.couleur-eau       { background-color: #1a3a5a; border-color: #2060aa; color: #adf; }
+
+/* ── Statut ── */
+
+.statut-message {
+  font-size: 12px;
+  color: #c9a227;
+  font-style: italic;
+  text-align: center;
+  padding: 4px 0;
+}
+
+/* ── Historique ── */
+
+.historique-liste {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.historique-entree {
+  font-size: 11px;
+  color: #8a7a5a;
+  padding: 3px 0;
+  border-bottom: 1px solid #1e1810;
+}
+
+.historique-entree:last-child {
+  border-bottom: none;
+}
+
+
+/* =====================================================
+   7. LA GRILLE DE JEU
+===================================================== */
+
+.zone-centrale {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: #13100c;
+  overflow: hidden;
+}
+
+.grille-conteneur {
+  background-color: #1a1408;
+  border: 2px solid #4a3820;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.etiquettes-colonnes {
+  display: flex;
+  padding-left: 26px;
+  margin-bottom: 3px;
+}
+
+.coin-vide {
+  width: 26px;
+  flex-shrink: 0;
+}
+
+.etiquette-col {
+  width: 66px;
+  text-align: center;
+  font-size: 11px;
+  color: #8a7a5a;
+}
+
+.ligne-grille {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.etiquette-ligne {
+  width: 24px;
+  text-align: right;
+  padding-right: 4px;
+  font-size: 11px;
+  color: #8a7a5a;
+  flex-shrink: 0;
+}
+
+.case {
+  width: 66px;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #3a2e1a;
+  border-radius: 3px;
+  margin: 1px;
+  cursor: pointer;
+  position: relative;
+}
+
+.case:hover {
+  border-color: #c9a227;
+  filter: brightness(1.2);
+}
+
+/* Types de cases */
+.neutre        { background-color: #c9b07a; }
+.zone-j1       { background-color: #3a6e22; }
+.zone-j2       { background-color: #7a2020; }
+.bonus-attaque { background-color: #b8860b; }
+.bonus-defense { background-color: #1a4a7a; }
+.piege         { background-color: #4a2a0a; }
+.montagne      { background-color: #5a5040; cursor: not-allowed; }
+.eau           { background-color: #1a3a5a; cursor: not-allowed; }
+
+.case-selectionnee {
+  border: 2px solid #c9a227 !important;
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.4);
+}
+
+.icone-case {
+  font-size: 22px;
+  pointer-events: none;
+}
+
+/* Jetons */
+.jeton {
+  width: 46px;
+  height: 46px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border: 2px solid;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.jeton-j1 {
+  background-color: #1a3d0e;
+  border-color: #4a9e30;
+}
+
+.jeton-j2 {
+  background-color: #3d0e0e;
+  border-color: #9e3030;
+}
+
+/* ── Dé (dans le modal) ── */
+
+.de-face {
+  width: 70px;
+  height: 70px;
+  background-color: #f5f0e8;
+  border-radius: 10px;
+  border: 3px solid #cccccc;
+  position: relative;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+
+.de-point {
+  width: 11px;
+  height: 11px;
+  background-color: #1c1610;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.point-h1 { top: 10px; }
+.point-h2 { top: 50%; transform: translateY(-50%); }
+.point-h3 { bottom: 10px; }
+.point-c1 { left: 10px; }
+.point-c2 { left: 50%; transform: translateX(-50%); }
+.point-c3 { right: 10px; }
+
+.point-h2.point-c2,
+.de-point.centre {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.de-chiffre {
+  color: #c9a227;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.bouton-lancer {
+  width: 100%;
+  padding: 6px 14px;
+  border-radius: 5px;
+  background-color: #2a1e00;
+  border: 1px solid #c9a227;
+  color: #c9a227;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-family: Georgia, serif;
+}
+
+.bouton-lancer:hover {
+  background-color: #3a2e00;
+}
+
+.bouton-lancer:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+/* =====================================================
+   8. BARRE DU BAS
+===================================================== */
+
+.barre-bas {
+  display: grid;
+  grid-template-columns: 280px 1fr 280px;
+  border-top: 2px solid #3a2e1e;
+  background-color: #13100c;
+  min-height: 100px;
+  flex-shrink: 0;
+}
+
+.panneau-unite-selectionnee {
+  background-color: #1c1610;
+  border-right: 2px solid #3a2e1e;
+  padding: 10px 12px;
+}
+
+.unite-selectionnee-contenu {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 6px;
+}
+
+.unite-sel-icone {
+  width: 54px;
+  height: 54px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  background-color: #0d2508;
+  border: 2px solid #4a9e30;
+  flex-shrink: 0;
+}
+
+.unite-sel-infos {
+  flex: 1;
+}
+
+.unite-sel-nom {
+  font-size: 15px;
+  font-weight: bold;
+  color: #e8dcc0;
+  margin-bottom: 2px;
+}
+
+.unite-sel-stat {
+  font-size: 12px;
+  color: #8a7a5a;
+}
+
+.unite-sel-statut {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #c9a227;
+}
+
+.point-statut {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #c9a227;
+  animation: clignoter 1.5s infinite;
+}
+
+@keyframes clignoter {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.panneau-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+}
+
+.actions-message {
+  font-size: 13px;
+  color: #c9a227;
+  font-style: italic;
+  text-align: center;
+}
+
+.barre-bas-droite {
+  border-left: 2px solid #3a2e1e;
+}
