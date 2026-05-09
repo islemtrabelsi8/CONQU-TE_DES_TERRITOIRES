@@ -1,70 +1,70 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <title>Conquête des Territoires</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap"
-    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <!--
-  ================================================
+
+  <!-- ================================================
        MODAL : Lancer de dés initial
   ================================================ -->
-
   <div id="modal-de" class="modal-overlay">
     <div class="modal-boite">
       <h2 class="modal-titre">⚔ CONQUÊTE DES TERRITOIRES ⚔</h2>
       <p class="modal-sous-titre">Chaque joueur lance le dé — le plus grand commence !</p>
-
       <div class="modal-des">
-
         <div class="modal-joueur">
           <div class="modal-nom-j1">👑 Joueur 1</div>
-          <div class="de-face" id="de-j1">
-            <div class="de-point point-h2 point-c2"></div>
-          </div>
+          <div class="de-face" id="de-j1"><div class="de-point point-h2 point-c2"></div></div>
           <div class="de-chiffre" id="chiffre-j1">?</div>
           <button class="bouton-lancer" id="btn-j1" onclick="lancerDe(1)">🎲 Lancer</button>
         </div>
-
-
         <div class="modal-vs">VS</div>
-
-
         <div class="modal-joueur">
           <div class="modal-nom-j2">Joueur 2 👑</div>
-          <div class="de-face" id="de-j2">
-            <div class="de-point point-h2 point-c2"></div>
-          </div>
+          <div class="de-face" id="de-j2"><div class="de-point point-h2 point-c2"></div></div>
           <div class="de-chiffre" id="chiffre-j2">?</div>
           <button class="bouton-lancer" id="btn-j2" onclick="lancerDe(2)">🎲 Lancer</button>
         </div>
-
       </div>
-
       <div id="modal-resultat" class="modal-resultat"></div>
     </div>
   </div>
 
-
   <!-- ================================================
-       HEADER
+       MODAL : Résultat de combat
   ================================================ -->
+  <div id="modal-combat" class="modal-overlay" style="display:none;">
+    <div class="modal-boite">
+      <h2 class="modal-titre">⚔ COMBAT !</h2>
+      <div class="modal-des">
+        <div class="modal-joueur">
+          <div class="modal-nom-j1">Attaquant (J<span id="combat-att-num"></span>)</div>
+          <div class="de-face" id="de-combat-att"><div class="de-point point-h2 point-c2"></div></div>
+          <div class="de-chiffre" id="chiffre-combat-att">?</div>
+          <div style="font-size:12px;color:#8a7a5a;" id="detail-att"></div>
+        </div>
+        <div class="modal-vs">VS</div>
+        <div class="modal-joueur">
+          <div class="modal-nom-j2">Défenseur (J<span id="combat-def-num"></span>)</div>
+          <div class="de-face" id="de-combat-def"><div class="de-point point-h2 point-c2"></div></div>
+          <div class="de-chiffre" id="chiffre-combat-def">?</div>
+          <div style="font-size:12px;color:#8a7a5a;" id="detail-def"></div>
+        </div>
+      </div>
+      <div id="combat-resultat" class="modal-resultat"></div>
+      <button class="bouton-lancer" id="btn-combat-lancer" onclick="lancerCombat()">🎲 Lancer les dés de combat</button>
+    </div>
+  </div>
 
-
-
+  <!-- HEADER -->
   <header class="header">
-
     <div class="bandeau bandeau-j1">
       <span class="couronne">👑</span>
       <span>Joueur 1</span>
     </div>
-
     <div class="titre-centre">
       <h1 class="titre-jeu">⚔ CONQUÊTE DES TERRITOIRES ⚔</h1>
       <div class="info-tour">
@@ -72,81 +72,67 @@
         <span class="phase-actuelle" id="affichage-phase">Phase : Dés initiaux</span>
       </div>
     </div>
-
     <div class="bandeau bandeau-j2">
       <span>Joueur 2</span>
       <span class="couronne">👑</span>
     </div>
-
   </header>
 
-
-  <!-- ================================================
-       CONTENU PRINCIPAL
-  ================================================ -->
+  <!-- CONTENU PRINCIPAL -->
   <main class="contenu-principal">
 
-
-    <!-- ============================================
-         PANNEAU GAUCHE : Joueur 1
-    ============================================ -->
+    <!-- PANNEAU GAUCHE : Joueur 1 -->
     <div class="panneau panneau-j1">
-
       <div class="info-joueur info-joueur-j1">
         <div class="portrait portrait-j1">🧙</div>
         <div class="stats-joueur">
           <div class="nom-joueur nom-j1">Joueur 1</div>
-          <div class="stat-ligne">Unités placées : <span class="stat-valeur" id="stat-placees-j1">0</span> / 5</div>
-          <div class="stat-ligne">Unités restantes : <span class="stat-valeur" id="stat-restantes-j1">5</span></div>
+          <div class="stat-ligne">Unités restantes : <span class="stat-valeur" id="stat-placees-j1">0</span> / 5</div>
+          <div class="stat-ligne">Cases contrôlées : <span class="stat-valeur" id="stat-cases-j1">0</span></div>
         </div>
       </div>
 
-      <!-- Unités du Joueur 1 -->
       <div class="section">
         <div class="section-titre">UNITÉS</div>
-
         <div class="unite-ligne">
           <div class="unite-icone icone-j1">🪖</div>
           <div class="unite-details">
             <div class="unite-nom">Soldat (S)</div>
-            <div class="unite-info">Force : Moyenne · Dépl. : 1</div>
+            <div class="unite-info">Force : 2</div>
           </div>
           <div class="unite-compteur" id="cpt-j1-soldat">0</div>
         </div>
-
         <div class="unite-ligne">
           <div class="unite-icone icone-j1">🐴</div>
           <div class="unite-details">
             <div class="unite-nom">Cavalier (C)</div>
-            <div class="unite-info">Force : Faible · Dépl. : 1-2</div>
+            <div class="unite-info">Force : 1</div>
           </div>
           <div class="unite-compteur" id="cpt-j1-cavalier">0</div>
         </div>
-
         <div class="unite-ligne">
           <div class="unite-icone icone-j1">🛡️</div>
           <div class="unite-details">
             <div class="unite-nom">Tank (T)</div>
-            <div class="unite-info">Force : Forte · Dépl. : 1</div>
+            <div class="unite-info">Force : 3</div>
           </div>
           <div class="unite-compteur" id="cpt-j1-tank">0</div>
         </div>
-
       </div>
 
-      <!-- Sélecteur de type d'unité Joueur 1 -->
+      <!-- Sélecteur unité J1 -->
       <div class="section" id="section-choix-j1">
         <div class="section-titre">CHOISIR UNE UNITÉ</div>
         <div class="choix-unites">
-          <div class="choix-unite-btn" id="choix-j1-soldat" onclick="choisirUnite(1, 'soldat')">
+          <div class="choix-unite-btn" id="choix-j1-soldat" onclick="choisirUnite(1,'soldat')">
             <span class="choix-icone">🪖</span>
             <span class="choix-label">Soldat</span>
           </div>
-          <div class="choix-unite-btn" id="choix-j1-cavalier" onclick="choisirUnite(1, 'cavalier')">
+          <div class="choix-unite-btn" id="choix-j1-cavalier" onclick="choisirUnite(1,'cavalier')">
             <span class="choix-icone">🐴</span>
             <span class="choix-label">Cavalier</span>
           </div>
-          <div class="choix-unite-btn" id="choix-j1-tank" onclick="choisirUnite(1, 'tank')">
+          <div class="choix-unite-btn" id="choix-j1-tank" onclick="choisirUnite(1,'tank')">
             <span class="choix-icone">🛡️</span>
             <span class="choix-label">Tank</span>
           </div>
@@ -161,197 +147,179 @@
           <div class="historique-entree">Le jeu commence — lancer de dés !</div>
         </div>
       </div>
-
     </div>
-    <!-- fin panneau gauche -->
 
-
-    <!-- ============================================
-         ZONE CENTRALE : La grille 8x8
-    ============================================ -->
+    <!-- ZONE CENTRALE : La grille 8x8 -->
     <div class="zone-centrale">
-
       <div class="grille-conteneur">
 
-        <!-- Étiquettes des colonnes -->
         <div class="etiquettes-colonnes">
           <div class="coin-vide"></div>
-          <div class="etiquette-col">0</div>
-          <div class="etiquette-col">1</div>
-          <div class="etiquette-col">2</div>
-          <div class="etiquette-col">3</div>
-          <div class="etiquette-col">4</div>
-          <div class="etiquette-col">5</div>
-          <div class="etiquette-col">6</div>
-          <div class="etiquette-col">7</div>
+          <div class="etiquette-col">0</div><div class="etiquette-col">1</div>
+          <div class="etiquette-col">2</div><div class="etiquette-col">3</div>
+          <div class="etiquette-col">4</div><div class="etiquette-col">5</div>
+          <div class="etiquette-col">6</div><div class="etiquette-col">7</div>
         </div>
 
-        <!-- Lignes 0 et 1 : Zone Joueur 1 -->
+        <!-- Ligne 0 : Zone J1 -->
         <div class="ligne-grille">
           <div class="etiquette-ligne">0</div>
-          <div class="case zone-j1" data-ligne="0" data-col="0" onclick="placerUnite(0,0)"></div>
-          <div class="case zone-j1" data-ligne="0" data-col="1" onclick="placerUnite(0,1)"></div>
-          <div class="case zone-j1" data-ligne="0" data-col="2" onclick="placerUnite(0,2)"></div>
-          <div class="case zone-j1" data-ligne="0" data-col="3" onclick="placerUnite(0,3)"></div>
-          <div class="case zone-j1" data-ligne="0" data-col="4" onclick="placerUnite(0,4)"></div>
-          <div class="case zone-j1" data-ligne="0" data-col="5" onclick="placerUnite(0,5)"></div>
-          <div class="case zone-j1" data-ligne="0" data-col="6" onclick="placerUnite(0,6)"></div>
-          <div class="case zone-j1" data-ligne="0" data-col="7" onclick="placerUnite(0,7)"></div>
+          <div class="case zone-j1" data-ligne="0" data-col="0" onclick="clicCase(0,0)"></div>
+          <div class="case zone-j1" data-ligne="0" data-col="1" onclick="clicCase(0,1)"></div>
+          <div class="case zone-j1" data-ligne="0" data-col="2" onclick="clicCase(0,2)"></div>
+          <div class="case zone-j1" data-ligne="0" data-col="3" onclick="clicCase(0,3)"></div>
+          <div class="case zone-j1" data-ligne="0" data-col="4" onclick="clicCase(0,4)"></div>
+          <div class="case zone-j1" data-ligne="0" data-col="5" onclick="clicCase(0,5)"></div>
+          <div class="case zone-j1" data-ligne="0" data-col="6" onclick="clicCase(0,6)"></div>
+          <div class="case zone-j1" data-ligne="0" data-col="7" onclick="clicCase(0,7)"></div>
         </div>
 
+        <!-- Ligne 1 : Zone J1 -->
         <div class="ligne-grille">
           <div class="etiquette-ligne">1</div>
-          <div class="case zone-j1" data-ligne="1" data-col="0" onclick="placerUnite(1,0)"></div>
-          <div class="case zone-j1" data-ligne="1" data-col="1" onclick="placerUnite(1,1)"></div>
-          <div class="case zone-j1" data-ligne="1" data-col="2" onclick="placerUnite(1,2)"></div>
-          <div class="case zone-j1" data-ligne="1" data-col="3" onclick="placerUnite(1,3)"></div>
-          <div class="case zone-j1" data-ligne="1" data-col="4" onclick="placerUnite(1,4)"></div>
-          <div class="case zone-j1" data-ligne="1" data-col="5" onclick="placerUnite(1,5)"></div>
-          <div class="case zone-j1" data-ligne="1" data-col="6" onclick="placerUnite(1,6)"></div>
-          <div class="case zone-j1" data-ligne="1" data-col="7" onclick="placerUnite(1,7)"></div>
+          <div class="case zone-j1" data-ligne="1" data-col="0" onclick="clicCase(1,0)"></div>
+          <div class="case zone-j1" data-ligne="1" data-col="1" onclick="clicCase(1,1)"></div>
+          <div class="case zone-j1" data-ligne="1" data-col="2" onclick="clicCase(1,2)"></div>
+          <div class="case zone-j1" data-ligne="1" data-col="3" onclick="clicCase(1,3)"></div>
+          <div class="case zone-j1" data-ligne="1" data-col="4" onclick="clicCase(1,4)"></div>
+          <div class="case zone-j1" data-ligne="1" data-col="5" onclick="clicCase(1,5)"></div>
+          <div class="case zone-j1" data-ligne="1" data-col="6" onclick="clicCase(1,6)"></div>
+          <div class="case zone-j1" data-ligne="1" data-col="7" onclick="clicCase(1,7)"></div>
         </div>
 
-        <!-- Lignes neutres (2 à 5) -->
+        <!-- Ligne 2 : Zone neutre -->
         <div class="ligne-grille">
           <div class="etiquette-ligne">2</div>
-          <div class="case neutre"></div>
-          <div class="case neutre"></div>
-          <div class="case montagne"><span class="icone-case">▲</span></div>
-          <div class="case neutre"></div>
-          <div class="case neutre"></div>
-          <div class="case bonus-attaque"><span class="icone-case">⚔</span></div>
-          <div class="case neutre"></div>
-          <div class="case neutre"></div>
+          <div class="case neutre" data-ligne="2" data-col="0" onclick="clicCase(2,0)"></div>
+          <div class="case neutre" data-ligne="2" data-col="1" onclick="clicCase(2,1)"></div>
+          <div class="case neutre" data-ligne="2" data-col="2" onclick="clicCase(2,2)"></div>
+          <div class="case neutre" data-ligne="2" data-col="3" onclick="clicCase(2,3)"></div>
+          <div class="case neutre" data-ligne="2" data-col="4" onclick="clicCase(2,4)"></div>
+          <div class="case bonus-attaque" data-ligne="2" data-col="5" onclick="clicCase(2,5)"><span class="icone-case">⚔</span></div>
+          <div class="case neutre" data-ligne="2" data-col="6" onclick="clicCase(2,6)"></div>
+          <div class="case neutre" data-ligne="2" data-col="7" onclick="clicCase(2,7)"></div>
         </div>
 
+        <!-- Ligne 3 : Zone neutre -->
         <div class="ligne-grille">
           <div class="etiquette-ligne">3</div>
-          <div class="case neutre"></div>
-          <div class="case neutre"></div>
-          <div class="case neutre"></div>
-          <div class="case neutre"></div>
-          <div class="case neutre"></div>
-          <div class="case neutre"></div>
-          <div class="case neutre"></div>
-          <div class="case bonus-attaque"><span class="icone-case">⚔</span></div>
+          <div class="case neutre" data-ligne="3" data-col="0" onclick="clicCase(3,0)"></div>
+          <div class="case neutre" data-ligne="3" data-col="1" onclick="clicCase(3,1)"></div>
+          <div class="case neutre" data-ligne="3" data-col="2" onclick="clicCase(3,2)"></div>
+          <div class="case neutre" data-ligne="3" data-col="3" onclick="clicCase(3,3)"></div>
+          <div class="case neutre" data-ligne="3" data-col="4" onclick="clicCase(3,4)"></div>
+          <div class="case neutre" data-ligne="3" data-col="5" onclick="clicCase(3,5)"></div>
+          <div class="case neutre" data-ligne="3" data-col="6" onclick="clicCase(3,6)"></div>
+          <div class="case neutre" data-ligne="3" data-col="7" onclick="clicCase(3,7)"></div>
         </div>
 
+        <!-- Ligne 4 : Zone neutre -->
         <div class="ligne-grille">
           <div class="etiquette-ligne">4</div>
-          <div class="case neutre"></div>
-          <div class="case neutre"></div>
-          <div class="case piege"><span class="icone-case">⚙</span></div>
-          <div class="case neutre"></div>
-          <div class="case neutre"></div>
-          <div class="case neutre"></div>
-          <div class="case eau"><span class="icone-case">≋</span></div>
-          <div class="case neutre"></div>
+          <div class="case neutre" data-ligne="4" data-col="0" onclick="clicCase(4,0)"></div>
+          <div class="case neutre" data-ligne="4" data-col="1" onclick="clicCase(4,1)"></div>
+          <div class="case neutre" data-ligne="4" data-col="2" onclick="clicCase(4,2)"></div>
+          <div class="case piege" data-ligne="4" data-col="3" onclick="clicCase(4,3)"><span class="icone-case">⚙</span></div>
+          <div class="case neutre" data-ligne="4" data-col="4" onclick="clicCase(4,4)"></div>
+          <div class="case neutre" data-ligne="4" data-col="5" onclick="clicCase(4,5)"></div>
+          <div class="case neutre" data-ligne="4" data-col="6" onclick="clicCase(4,6)"></div>
+          <div class="case neutre" data-ligne="4" data-col="7" onclick="clicCase(4,7)"></div>
         </div>
 
+        <!-- Ligne 5 : Zone neutre -->
         <div class="ligne-grille">
           <div class="etiquette-ligne">5</div>
-          <div class="case neutre"></div>
-          <div class="case bonus-defense"><span class="icone-case">🛡</span></div>
-          <div class="case neutre"></div>
-          <div class="case montagne"><span class="icone-case">▲</span></div>
-          <div class="case neutre"></div>
-          <div class="case neutre"></div>
-          <div class="case neutre"></div>
-          <div class="case neutre"></div>
+          <div class="case neutre" data-ligne="5" data-col="0" onclick="clicCase(5,0)"></div>
+          <div class="case bonus-defense" data-ligne="5" data-col="1" onclick="clicCase(5,1)"><span class="icone-case">🛡</span></div>
+          <div class="case neutre" data-ligne="5" data-col="2" onclick="clicCase(5,2)"></div>
+          <div class="case neutre" data-ligne="5" data-col="3" onclick="clicCase(5,3)"></div>
+          <div class="case neutre" data-ligne="5" data-col="4" onclick="clicCase(5,4)"></div>
+          <div class="case eau" data-ligne="5" data-col="5"><span class="icone-case">≋</span></div>
+          <div class="case neutre" data-ligne="5" data-col="6" onclick="clicCase(5,6)"></div>
+          <div class="case neutre" data-ligne="5" data-col="7" onclick="clicCase(5,7)"></div>
         </div>
 
-        <!-- Lignes 6 et 7 : Zone Joueur 2 -->
+        <!-- Ligne 6 : Zone J2 -->
         <div class="ligne-grille">
           <div class="etiquette-ligne">6</div>
-          <div class="case zone-j2" data-ligne="6" data-col="0" onclick="placerUnite(6,0)"></div>
-          <div class="case zone-j2" data-ligne="6" data-col="1" onclick="placerUnite(6,1)"></div>
-          <div class="case zone-j2" data-ligne="6" data-col="2" onclick="placerUnite(6,2)"></div>
-          <div class="case zone-j2" data-ligne="6" data-col="3" onclick="placerUnite(6,3)"></div>
-          <div class="case zone-j2" data-ligne="6" data-col="4" onclick="placerUnite(6,4)"></div>
-          <div class="case zone-j2" data-ligne="6" data-col="5" onclick="placerUnite(6,5)"></div>
-          <div class="case zone-j2" data-ligne="6" data-col="6" onclick="placerUnite(6,6)"></div>
-          <div class="case zone-j2" data-ligne="6" data-col="7" onclick="placerUnite(6,7)"></div>
+          <div class="case zone-j2" data-ligne="6" data-col="0" onclick="clicCase(6,0)"></div>
+          <div class="case zone-j2" data-ligne="6" data-col="1" onclick="clicCase(6,1)"></div>
+          <div class="case zone-j2" data-ligne="6" data-col="2" onclick="clicCase(6,2)"></div>
+          <div class="case zone-j2" data-ligne="6" data-col="3" onclick="clicCase(6,3)"></div>
+          <div class="case zone-j2" data-ligne="6" data-col="4" onclick="clicCase(6,4)"></div>
+          <div class="case zone-j2" data-ligne="6" data-col="5" onclick="clicCase(6,5)"></div>
+          <div class="case zone-j2" data-ligne="6" data-col="6" onclick="clicCase(6,6)"></div>
+          <div class="case zone-j2" data-ligne="6" data-col="7" onclick="clicCase(6,7)"></div>
         </div>
 
+        <!-- Ligne 7 : Zone J2 -->
         <div class="ligne-grille">
           <div class="etiquette-ligne">7</div>
-          <div class="case zone-j2" data-ligne="7" data-col="0" onclick="placerUnite(7,0)"></div>
-          <div class="case zone-j2" data-ligne="7" data-col="1" onclick="placerUnite(7,1)"></div>
-          <div class="case zone-j2" data-ligne="7" data-col="2" onclick="placerUnite(7,2)"></div>
-          <div class="case zone-j2" data-ligne="7" data-col="3" onclick="placerUnite(7,3)"></div>
-          <div class="case zone-j2" data-ligne="7" data-col="4" onclick="placerUnite(7,4)"></div>
-          <div class="case zone-j2" data-ligne="7" data-col="5" onclick="placerUnite(7,5)"></div>
-          <div class="case zone-j2" data-ligne="7" data-col="6" onclick="placerUnite(7,6)"></div>
-          <div class="case zone-j2" data-ligne="7" data-col="7" onclick="placerUnite(7,7)"></div>
+          <div class="case zone-j2" data-ligne="7" data-col="0" onclick="clicCase(7,0)"></div>
+          <div class="case zone-j2" data-ligne="7" data-col="1" onclick="clicCase(7,1)"></div>
+          <div class="case zone-j2" data-ligne="7" data-col="2" onclick="clicCase(7,2)"></div>
+          <div class="case zone-j2" data-ligne="7" data-col="3" onclick="clicCase(7,3)"></div>
+          <div class="case zone-j2" data-ligne="7" data-col="4" onclick="clicCase(7,4)"></div>
+          <div class="case zone-j2" data-ligne="7" data-col="5" onclick="clicCase(7,5)"></div>
+          <div class="case zone-j2" data-ligne="7" data-col="6" onclick="clicCase(7,6)"></div>
+          <div class="case zone-j2" data-ligne="7" data-col="7" onclick="clicCase(7,7)"></div>
         </div>
 
       </div>
-      <!-- fin grille-conteneur -->
-
     </div>
-    <!-- fin zone centrale -->
 
-
-    <!-- ============================================
-         PANNEAU DROIT : Joueur 2
-    ============================================ -->
+    <!-- PANNEAU DROIT : Joueur 2 -->
     <div class="panneau panneau-j2">
-
       <div class="info-joueur info-joueur-j2">
         <div class="portrait portrait-j2">🧝</div>
         <div class="stats-joueur">
           <div class="nom-joueur nom-j2">Joueur 2</div>
-          <div class="stat-ligne">Unités placées : <span class="stat-valeur" id="stat-placees-j2">0</span> / 5</div>
-          <div class="stat-ligne">Unités restantes : <span class="stat-valeur" id="stat-restantes-j2">5</span></div>
+          <div class="stat-ligne">Unités restantes : <span class="stat-valeur" id="stat-placees-j2">0</span> / 5</div>
+          <div class="stat-ligne">Cases contrôlées : <span class="stat-valeur" id="stat-cases-j2">0</span></div>
         </div>
       </div>
 
-      <!-- Unités du Joueur 2 -->
       <div class="section">
         <div class="section-titre">UNITÉS</div>
-
         <div class="unite-ligne">
           <div class="unite-icone icone-j2">🪖</div>
           <div class="unite-details">
             <div class="unite-nom">Soldat (S)</div>
-            <div class="unite-info">Force : Moyenne · Dépl. : 1</div>
+            <div class="unite-info">Force : 2</div>
           </div>
           <div class="unite-compteur" id="cpt-j2-soldat">0</div>
         </div>
-
         <div class="unite-ligne">
           <div class="unite-icone icone-j2">🐴</div>
           <div class="unite-details">
             <div class="unite-nom">Cavalier (C)</div>
-            <div class="unite-info">Force : Faible · Dépl. : 1-2</div>
+            <div class="unite-info">Force : 1</div>
           </div>
           <div class="unite-compteur" id="cpt-j2-cavalier">0</div>
         </div>
-
         <div class="unite-ligne">
           <div class="unite-icone icone-j2">🛡️</div>
           <div class="unite-details">
             <div class="unite-nom">Tank (T)</div>
-            <div class="unite-info">Force : Forte · Dépl. : 1</div>
+            <div class="unite-info">Force : 3</div>
           </div>
           <div class="unite-compteur" id="cpt-j2-tank">0</div>
         </div>
-
       </div>
 
-      <!-- Sélecteur de type d'unité Joueur 2 -->
+      <!-- Sélecteur unité J2 -->
       <div class="section" id="section-choix-j2">
         <div class="section-titre">CHOISIR UNE UNITÉ</div>
         <div class="choix-unites">
-          <div class="choix-unite-btn" id="choix-j2-soldat" onclick="choisirUnite(2, 'soldat')">
+          <div class="choix-unite-btn" id="choix-j2-soldat" onclick="choisirUnite(2,'soldat')">
             <span class="choix-icone">🪖</span>
             <span class="choix-label">Soldat</span>
           </div>
-          <div class="choix-unite-btn" id="choix-j2-cavalier" onclick="choisirUnite(2, 'cavalier')">
+          <div class="choix-unite-btn" id="choix-j2-cavalier" onclick="choisirUnite(2,'cavalier')">
             <span class="choix-icone">🐴</span>
             <span class="choix-label">Cavalier</span>
           </div>
-          <div class="choix-unite-btn" id="choix-j2-tank" onclick="choisirUnite(2, 'tank')">
+          <div class="choix-unite-btn" id="choix-j2-tank" onclick="choisirUnite(2,'tank')">
             <span class="choix-icone">🛡️</span>
             <span class="choix-label">Tank</span>
           </div>
@@ -363,57 +331,26 @@
       <div class="section">
         <div class="section-titre">LÉGENDE</div>
         <div class="legende-grille">
-          <div class="legende-item">
-            <div class="legende-couleur couleur-j1"></div>
-            <span>Zone J1</span>
-          </div>
-          <div class="legende-item">
-            <div class="legende-couleur couleur-bonus-atk">⚔</div>
-            <span>Bonus Atk</span>
-          </div>
-          <div class="legende-item">
-            <div class="legende-couleur couleur-j2"></div>
-            <span>Zone J2</span>
-          </div>
-          <div class="legende-item">
-            <div class="legende-couleur couleur-bonus-def">🛡</div>
-            <span>Bonus Déf</span>
-          </div>
-          <div class="legende-item">
-            <div class="legende-couleur couleur-neutre"></div>
-            <span>Neutre</span>
-          </div>
-          <div class="legende-item">
-            <div class="legende-couleur couleur-piege">⚙</div>
-            <span>Piège</span>
-          </div>
-          <div class="legende-item">
-            <div class="legende-couleur couleur-montagne">▲</div>
-            <span>Montagne</span>
-          </div>
-          <div class="legende-item">
-            <div class="legende-couleur couleur-eau">≋</div>
-            <span>Eau</span>
-          </div>
+          <div class="legende-item"><div class="legende-couleur couleur-j1"></div><span>Zone J1</span></div>
+          <div class="legende-item"><div class="legende-couleur couleur-bonus-atk">⚔</div><span>Bonus Atk</span></div>
+          <div class="legende-item"><div class="legende-couleur couleur-j2"></div><span>Zone J2</span></div>
+          <div class="legende-item"><div class="legende-couleur couleur-bonus-def">🛡</div><span>Bonus Déf</span></div>
+          <div class="legende-item"><div class="legende-couleur couleur-neutre"></div><span>Neutre</span></div>
+          <div class="legende-item"><div class="legende-couleur couleur-piege">⚙</div><span>Piège</span></div>
+          <div class="legende-item"><div class="legende-couleur couleur-eau">≋</div><span>Eau</span></div>
         </div>
       </div>
 
-      <!-- Message de tour -->
+      <!-- Statut -->
       <div class="section">
         <div class="section-titre">STATUT</div>
         <div class="statut-message" id="statut-message">Lancez les dés pour commencer !</div>
       </div>
-
     </div>
-    <!-- fin panneau droit -->
-
 
   </main>
 
-
-  <!-- ================================================
-       BARRE DU BAS
-  ================================================ -->
+  <!-- BARRE DU BAS -->
   <div class="barre-bas">
 
     <div class="panneau-unite-selectionnee">
@@ -422,28 +359,48 @@
         <div class="unite-sel-icone" id="sel-icone">❓</div>
         <div class="unite-sel-infos">
           <div class="unite-sel-nom" id="sel-nom">Aucune</div>
-          <div class="unite-sel-stat" id="sel-joueur">—</div>
+          <div class="unite-sel-stat" id="sel-info">—</div>
           <div class="unite-sel-statut">
             <span class="point-statut"></span>
-            <span id="sel-statut">En attente du placement</span>
+            <span id="sel-statut">En attente</span>
           </div>
         </div>
       </div>
     </div>
 
     <div class="panneau-actions">
-      <div class="actions-message" id="instructions">
-        Lancez les dés pour déterminer qui commence !
+      <div class="actions-message" id="instructions">Lancez les dés pour déterminer qui commence !</div>
+      <!-- Boutons d'action (visibles dès le début, débloqués quand le jeu commence) -->
+      <div id="zone-boutons-action" style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div class="boutons-action">
+          <button class="btn-action btn-deplacer" id="btn-deplacer" onclick="return;" disabled>
+            👟 DÉPLACER<br><span class="btn-sous">Se déplacer vers une case vide</span>
+          </button>
+          <button class="btn-action btn-attaquer" id="btn-attaquer" onclick="activerAttaque()" disabled>
+            ⚔ ATTAQUER<br><span class="btn-sous">Attaquer une case voisine</span>
+          </button>
+          <button class="btn-action btn-defendre" id="btn-defendre" onclick="activerDefense()" disabled>
+            🛡 DÉFENDRE<br><span class="btn-sous">Rester et se défendre</span>
+          </button>
+          <button class="btn-action btn-capturer" id="btn-capturer" onclick="activerCapture()" disabled>
+            🏴 CAPTURER<br><span class="btn-sous">Capturer une case neutre</span>
+          </button>
+        </div>
+        <button class="bouton-fin-tour" id="btn-passer-dep" onclick="passerDeplacement()">⏭ Passer le déplacement</button>
       </div>
     </div>
 
-    <div class="barre-bas-droite"></div>
+    <div class="barre-bas-droite">
+      <div class="section-titre" style="padding:10px 12px 4px;">CASES CONTRÔLÉES</div>
+      <div style="padding:8px 12px;font-size:12px;color:#8a7a5a;line-height:2;">
+        <div>🟢 Joueur 1 : <strong style="color:#8fce60;" id="affichage-cases-j1">16</strong></div>
+        <div>🔴 Joueur 2 : <strong style="color:#e07070;" id="affichage-cases-j2">16</strong></div>
+        <div style="margin-top:4px;font-style:italic;">Objectif : 33 cases</div>
+      </div>
+    </div>
 
   </div>
 
-
   <script src="game.js"></script>
-  <script src="deplacement.js"></script>
 </body>
-
 </html>

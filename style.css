@@ -1,44 +1,33 @@
 /* =====================================================
    FICHIER CSS : style.css
    Jeu : Conquête des Territoires
+   Thème : Clair, chaud et harmonieux (beige, sauge, doré)
 ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:wght@400;500&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Couleurs principales utilisées partout */
 :root {
-  --parch: #F5EDD6;
-  --parch2: #EFE3C2;
-  --parch3: #E8D5A8;
-  --ink: #2A1F0E;
-  --ink2: #4A3520;
-  --ink3: #7A6040;
-  --rose1: #8B3A52;
-  --rose2: #C4607F;
-  --rose3: #E8A0B4;
-  --rose4: #F5D8E2;
-  --sage1: #2E4A3A;
-  --sage2: #4A7A5C;
-  --sage3: #8AB89A;
-  --sage4: #D8EDE0;
-  --gold1: #7A5010;
-  --gold2: #C4880A;
-  --gold3: #E8C060;
-  --gold4: #FBF0D0;
-  --border-ink: rgba(42, 31, 14, 0.18);
-}
-
-/* =====================================================
-   1. STYLES GLOBAUX
-===================================================== */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  --beige-clair:   #f5ead0;   /* fond général */
+  --beige-moyen:   #e8d5a8;   /* fond panneaux */
+  --beige-fonce:   #d4bb85;   /* bordures, séparateurs */
+  --or:            #c9951a;   /* accents dorés */
+  --or-clair:      #e8c060;   /* textes dorés */
+  --vert-j1:       #3a7060;   /* zone joueur 1 */
+  --vert-j1-clair: #4e9080;
+  --rose-j2:       #a04060;   /* zone joueur 2 */
+  --rose-j2-clair: #c05878;
+  --texte-fonce:   #4a3520;   /* texte principal */
+  --texte-moyen:   #7a6040;   /* texte secondaire */
+  --texte-clair:   #a08060;   /* texte discret */
 }
 
 body {
-
-  background: var(--parch);
-  font-family: 'Crimson Pro', serif;
-  color: var(--ink);
+  background-color: var(--beige-clair);
+  color: var(--texte-fonce);
+  font-family: 'Lora', Georgia, serif;
   font-size: 14px;
   height: 100vh;
   overflow: hidden;
@@ -46,18 +35,15 @@ body {
   flex-direction: column;
 }
 
-
 /* =====================================================
-   2. MODAL : Lancer de dés initial
+   MODAL
 ===================================================== */
 
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(80, 50, 10, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,25 +51,26 @@ body {
 }
 
 .modal-boite {
-  background-color: var(--parch3);
-  border: 2px solid var(--gold2);
-  border-radius: 12px;
-  padding: 30px 40px;
+  background: linear-gradient(160deg, #f8eecc, #f0dfa0);
+  border: 2px solid var(--or);
+  border-radius: 16px;
+  padding: 32px 44px;
   text-align: center;
-  min-width: 500px;
-  box-shadow: 0 0 40px rgba(201, 162, 39, 0.25);
+  min-width: 480px;
+  box-shadow: 0 8px 40px rgba(100, 70, 10, 0.25);
 }
 
 .modal-titre {
+  font-family: 'Cinzel', serif;
   font-size: 20px;
-  color: var(--gold2);
-  letter-spacing: 2px;
+  color: var(--texte-fonce);
+  letter-spacing: 3px;
   margin-bottom: 8px;
 }
 
 .modal-sous-titre {
   font-size: 13px;
-  color: var(--ink3);
+  color: var(--texte-moyen);
   margin-bottom: 28px;
   font-style: italic;
 }
@@ -92,7 +79,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 36px;
   margin-bottom: 20px;
 }
 
@@ -103,84 +90,68 @@ body {
   gap: 10px;
 }
 
-.modal-nom-j1 {
-  font-size: 15px;
-  font-weight: bold;
-  color: var(--sage3);
-}
-
-.modal-nom-j2 {
-  font-size: 15px;
-  font-weight: bold;
-  color: var(--rose2);
-}
-
-.modal-vs {
-  font-size: 24px;
-  font-weight: bold;
-  color: var(--gold2);
-  opacity: 0.6;
-}
+.modal-nom-j1 { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; color: var(--vert-j1); }
+.modal-nom-j2 { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; color: var(--rose-j2); }
+.modal-vs     { font-family: 'Cinzel', serif; font-size: 26px; font-weight: 700; color: var(--or); }
 
 .modal-resultat {
-  font-size: 16px;
-  font-weight: bold;
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: 600;
   min-height: 24px;
   margin-top: 10px;
+  color: var(--texte-fonce);
 }
 
-
 /* =====================================================
-   3. HEADER
+   HEADER
 ===================================================== */
 
 .header {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  background-color: var(--parch2);
-  border-bottom: 2px solid var(--gold2);
+  background-color: var(--beige-moyen);
+  border-bottom: 2px solid var(--beige-fonce);
   padding: 6px 12px;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(100, 70, 10, 0.12);
 }
 
 .bandeau {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-family: 'Georgia', serif;
-  font-size: 14px;
-  font-weight: bold;
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .bandeau-j1 {
-  background-color: var(--sage2);
-  border: 1px solid var(--sage4);
-  color: var(--sage4);
+  background-color: var(--vert-j1);
+  border: 1px solid var(--vert-j1-clair);
+  color: #d0f0e8;
 }
 
 .bandeau-j2 {
-  background-color: var(--rose3);
-  border: 1px solid var(--rose4);
-  color: var(--parch);
+  background-color: var(--rose-j2);
+  border: 1px solid var(--rose-j2-clair);
+  color: #ffd0e0;
   justify-content: flex-end;
 }
 
-.couronne {
-  font-size: 18px;
-}
+.couronne { font-size: 18px; }
 
-.titre-centre {
-  text-align: center;
-  padding: 4px 20px;
-}
+.titre-centre { text-align: center; padding: 4px 20px; }
 
 .titre-jeu {
+  font-family: 'Cinzel', serif;
   font-size: 20px;
-  color: var(--gold2);
-  letter-spacing: 2px;
+  font-weight: 700;
+  color: var(--texte-fonce);
+  letter-spacing: 3px;
 }
 
 .info-tour {
@@ -192,75 +163,63 @@ body {
 }
 
 .numero-tour {
-  font-size: 12px;
-  color: var(--ink3);
-  background-color: var(--parch);
-  border: 1px solid var(--parch3);
+  font-size: 11px;
+  color: var(--texte-moyen);
+  background-color: var(--beige-clair);
+  border: 1px solid var(--beige-fonce);
   padding: 2px 12px;
-  border-radius: 4px;
+  border-radius: 20px;
 }
 
 .phase-actuelle {
-  font-size: 12px;
-  color: var(--gold2);
-  background-color: var(--parch3);
-  border: 1px solid var(--gold2);
+  font-size: 11px;
+  color: var(--or);
+  background-color: #fdf5dc;
+  border: 1px solid var(--or);
   padding: 2px 12px;
-  border-radius: 4px;
+  border-radius: 20px;
 }
 
-
 /* =====================================================
-   4. CONTENU PRINCIPAL
+   CONTENU PRINCIPAL
 ===================================================== */
 
 .contenu-principal {
   display: grid;
-  grid-template-columns: 280px 1fr 280px;
+  grid-template-columns: 260px 1fr 260px;
   flex: 1;
   overflow: hidden;
 }
 
-
 /* =====================================================
-   5. PANNEAUX LATÉRAUX
+   PANNEAUX LATÉRAUX
 ===================================================== */
 
 .panneau {
-  background-color: var(--parch2);
+  background-color: var(--beige-moyen);
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-.panneau-j1 {
-  border-right: 2px solid var(--parch3);
-}
-
-.panneau-j2 {
-  border-left: 2px solid var(--parch3);
-}
+.panneau-j1 { border-right: 2px solid var(--beige-fonce); }
+.panneau-j2 { border-left:  2px solid var(--beige-fonce); }
 
 .info-joueur {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 10px;
-  border-bottom: 2px solid var(--parch3);
+  border-bottom: 2px solid var(--beige-fonce);
 }
 
-.info-joueur-j1 {
-  background-color: var(--sage4);
-}
-
-.info-joueur-j2 {
-  background-color: var(--rose4);
-}
+.info-joueur-j1 { background-color: #d8ede8; }
+.info-joueur-j2 { background-color: #eedad8; }
 
 .portrait {
-  width: 52px;
-  height: 52px;
-  border-radius: 6px;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -268,52 +227,19 @@ body {
   flex-shrink: 0;
 }
 
-.portrait-j1 {
-  background-color: var(--sage3);
-  border: 2px solid var(--sage2);
-}
+.portrait-j1 { background-color: #b8ddd6; border: 2px solid var(--vert-j1); }
+.portrait-j2 { background-color: #e8c0cc; border: 2px solid var(--rose-j2); }
 
-.portrait-j2 {
-  background-color: var(--rose3);
-  border: 2px solid var(--rose2);
-}
-
-.stats-joueur {
-  flex: 1;
-}
-
-.nom-joueur {
-  font-size: 15px;
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.nom-j1 {
-  color: var(--sage3);
-}
-
-.nom-j2 {
-  color: var(--rose2);
-}
-
-.stat-ligne {
-  font-size: 12px;
-  color: var(--ink3);
-}
-
-.stat-valeur {
-  color: var(--ink3);
-  font-weight: bold;
-}
-
-
-/* =====================================================
-   6. SECTIONS
-===================================================== */
+.stats-joueur { flex: 1; }
+.nom-joueur   { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.nom-j1       { color: var(--vert-j1); }
+.nom-j2       { color: var(--rose-j2); }
+.stat-ligne   { font-size: 11px; color: var(--texte-moyen); }
+.stat-valeur  { color: var(--texte-fonce); font-weight: bold; }
 
 .section {
   padding: 8px 10px;
-  border-bottom: 1px solid var(--ink2);
+  border-bottom: 1px solid var(--beige-fonce);
   flex-shrink: 0;
 }
 
@@ -324,18 +250,16 @@ body {
   flex-direction: column;
 }
 
-/* Section désactivée (pas le tour de ce joueur) */
-.section-inactive {
-  opacity: 0.4;
-  pointer-events: none;
-}
+.section-inactive { opacity: 0.35; pointer-events: none; }
 
 .section-titre {
-  font-size: 10px;
-  font-weight: bold;
-  color: var(--gold2);
-  letter-spacing: 2px;
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--or);
+  letter-spacing: 3px;
   margin-bottom: 6px;
+  text-transform: uppercase;
 }
 
 /* ── Unités ── */
@@ -345,72 +269,47 @@ body {
   align-items: center;
   gap: 8px;
   padding: 5px 0;
-  border-bottom: 1px solid var(--ink2);
+  border-bottom: 1px solid var(--beige-fonce);
 }
 
-.unite-ligne:last-child {
-  border-bottom: none;
-}
+.unite-ligne:last-child { border-bottom: none; }
 
 .unite-icone {
-  width: 36px;
-  height: 36px;
-  border-radius: 5px;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 18px;
   flex-shrink: 0;
 }
 
-.icone-j1 {
-  background-color: var(--sage1);
-  border: 1px solid var(--sage2);
-}
+.icone-j1 { background-color: #c8e8e0; border: 1px solid var(--vert-j1); }
+.icone-j2 { background-color: #f0c8d0; border: 1px solid var(--rose-j2); }
 
-.icone-j2 {
-  background-color: var(--rose1);
-  border: 1px solid var(--rose2);
-}
-
-.unite-details {
-  flex: 1;
-}
-
-.unite-nom {
-  font-size: 13px;
-  font-weight: bold;
-  color: var(--ink3);
-}
-
-.unite-info {
-  font-size: 11px;
-  color: var(--ink3);
-}
+.unite-details { flex: 1; }
+.unite-nom  { font-size: 12px; font-weight: 600; color: var(--texte-fonce); }
+.unite-info { font-size: 10px; color: var(--texte-clair); }
 
 .unite-compteur {
   min-width: 26px;
   height: 26px;
-  border-radius: 4px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 13px;
   font-weight: bold;
-  background-color: var(--parch3);
-  color: var(--ink);
-  border: 1px solid var(--parch2);
+  background-color: var(--beige-clair);
+  color: var(--texte-fonce);
+  border: 1px solid var(--beige-fonce);
 }
 
 /* ── Sélecteur d'unité ── */
 
-.choix-unites {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 6px;
-}
+.choix-unites { display: flex; gap: 5px; margin-bottom: 5px; }
 
-/* Bouton de choix d'unité */
 .choix-unite-btn {
   flex: 1;
   display: flex;
@@ -418,38 +317,30 @@ body {
   align-items: center;
   gap: 3px;
   padding: 8px 4px;
-  border-radius: 6px;
-  background-color: var(--parch3);
-  border: 1px solid var(--parch2);
+  border-radius: 8px;
+  background-color: var(--beige-clair);
+  border: 1px solid var(--beige-fonce);
   cursor: pointer;
-  transition: background-color 0.15s, border-color 0.15s;
+  transition: all 0.15s;
 }
 
 .choix-unite-btn:hover {
-  background-color: var(--parch2);
-  border-color: var(--gold2);
+  background-color: #fdf5dc;
+  border-color: var(--or);
 }
 
-/* Bouton sélectionné (unité choisie) */
 .choix-selectionne {
-  background-color: var(--gold4) !important;
-  border-color: var(--gold2) !important;
-  box-shadow: 0 0 6px rgba(201, 162, 39, 0.4);
+  background-color: #fdf5dc !important;
+  border-color: var(--or) !important;
+  box-shadow: 0 0 8px rgba(201, 149, 26, 0.3);
 }
 
-.choix-icone {
-  font-size: 22px;
-}
-
-.choix-label {
-  font-size: 10px;
-  color: var(--ink3);
-  letter-spacing: 1px;
-}
+.choix-icone { font-size: 22px; }
+.choix-label { font-size: 10px; color: var(--texte-moyen); letter-spacing: 1px; }
 
 .choix-message {
   font-size: 11px;
-  color: var(--ink3);
+  color: var(--texte-clair);
   font-style: italic;
   text-align: center;
   min-height: 14px;
@@ -457,82 +348,39 @@ body {
 
 /* ── Légende ── */
 
-.legende-grille {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5px 8px;
-}
+.legende-grille { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 8px; }
 
 .legende-item {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 11px;
-  color: var(--ink3);
+  font-size: 10px;
+  color: var(--texte-moyen);
 }
 
 .legende-couleur {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 3px;
-  border: 1px solid var(--ink2);
+  border: 1px solid rgba(0,0,0,0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  font-size: 9px;
   flex-shrink: 0;
 }
 
-.couleur-j1 {
-  background-color: var(--sage2);
-  border-color: var(--sage3);
-}
-
-.couleur-j2 {
-  background-color: var(--rose1);
-  border-color: var(--rose2);
-}
-
-.couleur-neutre {
-  background-color: var(--gold3);
-  border-color: var(--gold1);
-}
-
-.couleur-bonus-atk {
-  background-color: var(--gold2);
-  border-color: var(--gold3);
-  color: var(--parch);
-}
-
-.couleur-bonus-def {
-  background-color: var(--sage2);
-  border-color: var(--sage3);
-  color: var(--parch);
-}
-
-.couleur-piege {
-  background-color: var(--ink2);
-  border-color: var(--gold1);
-  color: var(--parch3);
-}
-
-.couleur-montagne {
-  background-color: var(--ink3);
-  border-color: var(--gold1);
-  color: var(--parch3);
-}
-
-.couleur-eau {
-  background-color: var(--ink2);
-  border-color: var(--sage3);
-  color: var(--parch2);
-}
-
-/* ── Statut ── */
+.couleur-j1        { background-color: #4a8070; }
+.couleur-j2        { background-color: #b05070; }
+.couleur-neutre    { background-color: #d4b870; }
+.couleur-bonus-atk { background-color: #c87030; color: #fff; }
+.couleur-bonus-def { background-color: #4080a0; color: #fff; }
+.couleur-piege     { background-color: #806030; color: #fff; }
+.couleur-eau       { background-color: #4090a8; color: #fff; }
 
 .statut-message {
-  font-size: 12px;
-  color: var(--gold2);
+  font-size: 11px;
+  color: var(--or);
   font-style: italic;
   text-align: center;
   padding: 4px 0;
@@ -540,25 +388,19 @@ body {
 
 /* ── Historique ── */
 
-.historique-liste {
-  overflow-y: auto;
-  flex: 1;
-}
+.historique-liste { overflow-y: auto; flex: 1; }
 
 .historique-entree {
   font-size: 11px;
-  color: var(--ink3);
+  color: var(--texte-moyen);
   padding: 3px 0;
-  border-bottom: 1px solid var(--parch3);
+  border-bottom: 1px solid var(--beige-fonce);
 }
 
-.historique-entree:last-child {
-  border-bottom: none;
-}
-
+.historique-entree:last-child { border-bottom: none; }
 
 /* =====================================================
-   7. LA GRILLE DE JEU
+   GRILLE
 ===================================================== */
 
 .zone-centrale {
@@ -566,182 +408,135 @@ body {
   align-items: center;
   justify-content: center;
   padding: 10px;
-  background-color: var(--parch);
+  background-color: var(--beige-clair);
   overflow: hidden;
 }
 
 .grille-conteneur {
-  background-color: var(--parch2);
-  border: 2px solid var(--gold1);
-  border-radius: 6px;
+  background-color: var(--beige-moyen);
+  border: 2px solid var(--beige-fonce);
+  border-radius: 10px;
   padding: 8px;
+  box-shadow: 0 4px 20px rgba(100, 70, 10, 0.15);
 }
 
 .etiquettes-colonnes {
   display: flex;
-  padding-left: 26px;
-  margin-bottom: 3px;
-}
-
-.coin-vide {
-  width: 26px;
-  flex-shrink: 0;
-}
-
-.etiquette-col {
-  width: 66px;
-  text-align: center;
-  font-size: 11px;
-  color: var(--ink3);
-}
-
-.ligne-grille {
-  display: flex;
-  align-items: center;
+  padding-left: 24px;
   margin-bottom: 2px;
 }
 
+.coin-vide     { width: 24px; flex-shrink: 0; }
+.etiquette-col { width: 62px; text-align: center; font-size: 10px; color: var(--texte-clair); }
+
+.ligne-grille { display: flex; align-items: center; margin-bottom: 1px; }
+
 .etiquette-ligne {
-  width: 24px;
+  width: 22px;
   text-align: right;
   padding-right: 4px;
-  font-size: 11px;
-  color: var(--ink3);
+  font-size: 10px;
+  color: var(--texte-clair);
   flex-shrink: 0;
 }
 
 .case {
-  width: 66px;
-  height: 66px;
+  width: 62px;
+  height: 62px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--parch3);
-  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
   margin: 1px;
   cursor: pointer;
   position: relative;
+  transition: filter 0.12s;
 }
 
-.case:hover {
-  border-color: var(--gold2);
-  filter: brightness(1.2);
-}
+.case:hover { filter: brightness(0.92); }
 
-/* Types de cases */
-.neutre {
-  background-color: var(--gold3);
-}
+/* Types de cases — clairs et harmonieux */
+.neutre        { background-color: #d4b870; }   /* ocre doux    */
+.zone-j1       { background-color: #4a8070; }   /* vert sauge   */
+.zone-j2       { background-color: #a04868; }   /* rose bordeaux*/
+.bonus-attaque { background-color: #c87030; }   /* orange terre */
+.bonus-defense { background-color: #4080a0; }   /* bleu canard  */
+.piege         { background-color: #706030; }   /* marron foncé */
+.eau           { background-color: #4090a8; }   /* bleu-vert    */
 
-.zone-j1 {
-  background-color: var(--sage2);
-}
-
-.zone-j2 {
-  background-color: var(--rose1);
-}
-
-.bonus-attaque {
-  background-color: var(--gold2);
-}
-
-.bonus-defense {
-  background-color: var(--sage2);
-}
-
-.piege {
-  background-color: var(--ink2);
-}
-
-.montagne {
-  background-color: var(--ink3);
-  cursor: not-allowed;
-}
-
-.eau {
-  background-color: var(--ink2);
-  cursor: not-allowed;
-}
-
+/* Surbrillances */
 .case-selectionnee {
-  border: 2px solid var(--gold2) !important;
-  box-shadow: 0 0 8px rgba(201, 162, 39, 0.4);
+  border: 2px solid var(--or) !important;
+  box-shadow: 0 0 10px rgba(201, 149, 26, 0.5);
 }
 
-.icone-case {
-  font-size: 22px;
-  pointer-events: none;
+.case-possible {
+  border: 2px solid #50c080 !important;
+  box-shadow: 0 0 8px rgba(80, 192, 128, 0.5);
 }
+
+.case-attaquable {
+  border: 2px solid #e05050 !important;
+  box-shadow: 0 0 8px rgba(224, 80, 80, 0.5);
+}
+
+.icone-case { font-size: 20px; pointer-events: none; color: rgba(255,255,255,0.7); }
 
 /* Jetons */
 .jeton {
   width: 46px;
   height: 46px;
-  border-radius: 5px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
   border: 2px solid;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
 }
 
-.jeton-j1 {
-  background-color: var(--sage1);
-  border-color: var(--sage2);
+.jeton-j1 { background-color: #c8e8e0; border-color: var(--vert-j1); }
+.jeton-j2 { background-color: #f0c8d0; border-color: var(--rose-j2); }
+
+.jeton-defend {
+  box-shadow: 0 0 12px rgba(64, 128, 160, 0.7);
+  border-color: #4080a0 !important;
 }
 
-.jeton-j2 {
-  background-color: var(--rose1);
-  border-color: var(--rose2);
-}
-
-/* ── Dé (dans le modal) ── */
+/* =====================================================
+   DÉ
+===================================================== */
 
 .de-face {
   width: 70px;
   height: 70px;
-  background-color: var(--parch);
-  border-radius: 10px;
-  border: 3px solid var(--parch2);
+  background: linear-gradient(135deg, #fdf8ee, #f5e8c0);
+  border-radius: 12px;
+  border: 2px solid var(--or);
   position: relative;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 12px rgba(100, 70, 10, 0.2);
   cursor: pointer;
 }
+
+.de-petit { width: 52px; height: 52px; border-radius: 8px; }
 
 .de-point {
   width: 11px;
   height: 11px;
-  background-color: var(--ink);
+  background-color: var(--texte-fonce);
   border-radius: 50%;
   position: absolute;
 }
 
-.point-h1 {
-  top: 10px;
-}
+.de-petit .de-point { width: 8px; height: 8px; }
 
-.point-h2 {
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.point-h3 {
-  bottom: 10px;
-}
-
-.point-c1 {
-  left: 10px;
-}
-
-.point-c2 {
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.point-c3 {
-  right: 10px;
-}
+.point-h1 { top: 10px; }
+.point-h2 { top: 50%; transform: translateY(-50%); }
+.point-h3 { bottom: 10px; }
+.point-c1 { left: 10px; }
+.point-c2 { left: 50%; transform: translateX(-50%); }
+.point-c3 { right: 10px; }
 
 .point-h2.point-c2,
 .de-point.centre {
@@ -750,52 +545,44 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.de-chiffre {
-  color: var(--gold2);
-  font-size: 20px;
-  font-weight: bold;
-}
+.de-chiffre { color: var(--or); font-size: 20px; font-weight: bold; }
 
 .bouton-lancer {
   width: 100%;
-  padding: 6px 14px;
-  border-radius: 5px;
-  background-color: var(--gold3);
-  border: 1px solid var(--gold2);
-  color: var(--ink);
+  padding: 7px 14px;
+  border-radius: 8px;
+  background-color: #f5e0a0;
+  border: 1px solid var(--or);
+  color: var(--texte-fonce);
   font-size: 12px;
   font-weight: bold;
   letter-spacing: 1px;
   cursor: pointer;
-  font-family: Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
+  box-shadow: 0 2px 6px rgba(100, 70, 10, 0.15);
+  transition: background-color 0.15s;
 }
 
-.bouton-lancer:hover {
-  background-color: var(--gold2);
-}
-
-.bouton-lancer:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
+.bouton-lancer:hover    { background-color: #f0d080; }
+.bouton-lancer:disabled { opacity: 0.4; cursor: not-allowed; }
 
 /* =====================================================
-   8. BARRE DU BAS
+   BARRE DU BAS
 ===================================================== */
 
 .barre-bas {
   display: grid;
-  grid-template-columns: 280px 1fr 280px;
-  border-top: 2px solid var(--parch3);
-  background-color: var(--parch2);
-  min-height: 100px;
+  grid-template-columns: 260px 1fr 200px;
+  border-top: 2px solid var(--beige-fonce);
+  background-color: var(--beige-moyen);
+  min-height: 110px;
   flex-shrink: 0;
+  box-shadow: 0 -3px 12px rgba(100, 70, 10, 0.1);
 }
 
 .panneau-unite-selectionnee {
-  background-color: var(--parch2);
-  border-right: 2px solid var(--parch3);
+  background-color: var(--beige-clair);
+  border-right: 2px solid var(--beige-fonce);
   padding: 10px 12px;
 }
 
@@ -807,61 +594,43 @@ body {
 }
 
 .unite-sel-icone {
-  width: 54px;
-  height: 54px;
-  border-radius: 6px;
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
-  background-color: var(--sage1);
-  border: 2px solid var(--sage2);
+  font-size: 28px;
+  background-color: #c8e8e0;
+  border: 2px solid var(--vert-j1);
   flex-shrink: 0;
 }
 
-.unite-sel-infos {
-  flex: 1;
-}
-
-.unite-sel-nom {
-  font-size: 15px;
-  font-weight: bold;
-  color: var(--parch3);
-  margin-bottom: 2px;
-}
-
-.unite-sel-stat {
-  font-size: 12px;
-  color: var(--ink3);
-}
+.unite-sel-infos  { flex: 1; }
+.unite-sel-nom    { font-size: 14px; font-weight: 600; color: var(--texte-fonce); margin-bottom: 2px; }
+.unite-sel-stat   { font-size: 11px; color: var(--texte-moyen); }
 
 .unite-sel-statut {
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-top: 5px;
-  font-size: 12px;
-  color: var(--gold2);
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--or);
 }
 
 .point-statut {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background-color: var(--gold2);
+  background-color: var(--or);
   animation: clignoter 1.5s infinite;
+  flex-shrink: 0;
 }
 
 @keyframes clignoter {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.3;
-  }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
 }
 
 .panneau-actions {
@@ -870,16 +639,86 @@ body {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 8px;
+  padding: 8px 12px;
 }
 
 .actions-message {
   font-size: 13px;
-  color: var(--ink3);
+  color: var(--texte-moyen);
   font-style: italic;
   text-align: center;
 }
 
+/* Boutons d'action */
+.boutons-action { display: flex; gap: 8px; margin-bottom: 6px; }
+
+.btn-action {
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.4;
+  min-width: 110px;
+  text-align: center;
+  transition: filter 0.15s, transform 0.1s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.btn-action:hover   { filter: brightness(0.93); transform: translateY(-1px); }
+.btn-action:active  { transform: translateY(0); }
+.btn-action:disabled { opacity: 0.35; cursor: not-allowed; transform: none; filter: none; }
+
+.btn-sous { font-size: 10px; font-weight: normal; display: block; margin-top: 3px; opacity: 0.75; }
+
+.btn-deplacer {
+  background-color: #c8e8d8;
+  border: 1px solid #6aaa88;
+  color: #1a5038;
+}
+
+.btn-attaquer {
+  background-color: #f0c8c8;
+  border: 1px solid #c06060;
+  color: #702020;
+}
+
+.btn-defendre {
+  background-color: #c8d8f0;
+  border: 1px solid #6080c0;
+  color: #202870;
+}
+
+.btn-capturer {
+  background-color: #f0e0a8;
+  border: 1px solid #c09830;
+  color: #604800;
+}
+
+.btn-actif {
+  box-shadow: 0 0 10px rgba(201, 149, 26, 0.4) !important;
+  border-color: var(--or) !important;
+}
+
+.bouton-fin-tour {
+  padding: 6px 20px;
+  border-radius: 8px;
+  background-color: #f5e0a0;
+  border: 1px solid var(--or);
+  color: var(--texte-fonce);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-family: 'Lora', Georgia, serif;
+  transition: background-color 0.15s;
+}
+
+.bouton-fin-tour:hover    { background-color: #f0d080; }
+.bouton-fin-tour:disabled { opacity: 0.3; cursor: not-allowed; }
+
 .barre-bas-droite {
-  border-left: 2px solid var(--parch3);
+  border-left: 2px solid var(--beige-fonce);
+  background-color: var(--beige-clair);
 }
