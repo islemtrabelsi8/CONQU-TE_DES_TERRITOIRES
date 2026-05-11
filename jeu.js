@@ -90,6 +90,8 @@ function demarrerTourJoueur() {
   caseSelectionnee = null;
   effacerSurbrillances();
 
+
+
   const j = joueurActif;
   document.getElementById('affichage-tour').textContent  = `Tour ${numeroTour}`;
   document.getElementById('affichage-phase').textContent = 'Phase : Déplacement';
@@ -244,12 +246,14 @@ function activerDefense() {
 
   const { ligne, col } = caseSelectionnee;
   const unite = grille[ligne][col].unite;
-  unite.enDefense = true;
+
+  // Ajouter +1 permanent à la force de l'unité (comme les cases bonus)
+  unite.bonusForce = (unite.bonusForce || 0) + 1;
 
   const jeton = getCase(ligne, col).querySelector('.jeton');
   if (jeton) jeton.classList.add('jeton-defend');
 
-  historique(`J${joueurActif} — ${NOMS[unite.type]} en (${ligne},${col}) se défend (+1 force)`);
+  historique(`J${joueurActif} — ${NOMS[unite.type]} en (${ligne},${col}) se défend → force : ${forceReelle(unite)}`);
   msg('Unité en défense ! (+1 force pour résister)');
   setTimeout(finDeTourJoueur, 700);
 }
@@ -392,17 +396,8 @@ function passerDeplacement() {
 // ── Fin de tour ────────────────────────────────────────────
 
 function finDeTourJoueur() {
-  // Retirer le bonus défense du joueur actif
-  for (let l = 0; l < 8; l++) {
-    for (let c = 0; c < 8; c++) {
-      const u = grille[l][c].unite;
-      if (u && u.joueur === joueurActif && u.enDefense) {
-        u.enDefense = false;
-        const jeton = getCase(l, c).querySelector('.jeton');
-        if (jeton) jeton.classList.remove('jeton-defend');
-      }
-    }
-  }
+  // Note : le bonus défense est retiré au DÉBUT du prochain tour
+  // du joueur dans demarrerTourJoueur() — pas ici.
 
   effacerSurbrillances();
   caseSelectionnee = null;
