@@ -1,8 +1,4 @@
-/* =====================================================
-   FICHIER CSS : style.css
-   Jeu : Conquête des Territoires
-   Thème : Clair, chaud et harmonieux (beige, sauge, doré)
-===================================================== */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:wght@400;500&display=swap');
 
@@ -58,6 +54,7 @@ body {
   text-align: center;
   min-width: 480px;
   box-shadow: 0 8px 40px rgba(100, 70, 10, 0.25);
+  perspective: 800px;
 }
 
 .modal-titre {
@@ -88,6 +85,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  perspective: 800px;
 }
 
 .modal-nom-j1 { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; color: var(--vert-j1); }
@@ -102,6 +100,128 @@ body {
   margin-top: 10px;
   color: var(--texte-fonce);
 }
+/* Dé en 3D */
+.dice {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    transform-style: preserve-3d;
+    transition: 1s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+@keyframes rolling {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}
+
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    border: 5px solid #f6f3f0;
+    transform-style: preserve-3d;
+    background: linear-gradient(
+        145deg, #dddbd8, #fff
+    );
+}
+
+.face::before {
+    position: absolute;
+    content: '';
+   display:none;
+    border-radius: 20px;
+    background: #f6f3f0;
+    transform: translateZ(-1px);
+}
+
+.face::after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #131210;
+    
+}
+
+.front {
+    transform: translateZ(50px);
+}
+
+.back {
+    transform: rotateX(180deg) translateZ(50px);
+}
+
+.top {
+    transform: rotateX(90deg) translateZ(50px);
+}
+
+.bottom {
+    transform: rotateX(-90deg) translateZ(50px);
+}
+
+.right {
+    transform: rotateY(90deg) translateZ(50px);
+}
+
+.left {
+    transform: rotateY(-90deg) translateZ(50px);
+}
+
+.front::after {
+    width: 30px;
+    height: 30px;
+    background: #000000;
+    margin: -15px 0 0 -15px;
+}
+
+.back::after {
+    margin: -35px 0 0 -30px;
+    box-shadow: 40px 0,
+                0 25px,
+                40px 25px,
+                0 50px,
+                40px 50px;
+}
+
+.top::after {
+    margin: -30px 0 0 -30px;
+    box-shadow: 40px 40px;
+}
+
+.bottom::after {
+    margin: -36px 0 0 -36px;
+    box-shadow: 26px 26px,
+                52px 52px,
+                52px 0,
+                0 52px;
+}
+
+.right::after {
+    margin: -30px 0 0 -30px;
+    box-shadow: 40px 0,
+    0 40px,
+    40px 40px;
+}
+
+.left::after {
+    margin: -35px 0 0 -35px;
+    box-shadow: 25px 25px,
+                50px 50px;
+}
+
 
 /* =====================================================
    HEADER
@@ -288,6 +408,13 @@ body {
 .icone-j1 { background-color: #c8e8e0; border: 1px solid var(--vert-j1); }
 .icone-j2 { background-color: #f0c8d0; border: 1px solid var(--rose-j2); }
 
+.unite-img {
+  width: 32px;          /* taille icône */
+  height: 32px;         /* garde carré */
+  object-fit: contain;  /* évite la déformation */
+  border-radius: 6px;   /* optionnel : coins arrondis */
+
+}
 .unite-details { flex: 1; }
 .unite-nom  { font-size: 12px; font-weight: 600; color: var(--texte-fonce); }
 .unite-info { font-size: 10px; color: var(--texte-clair); }
