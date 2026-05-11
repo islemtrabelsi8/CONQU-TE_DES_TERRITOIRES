@@ -49,7 +49,7 @@ function placerUnite(ligne, col) {
   if (grille[ligne][col].unite) { msg('Cette case est déjà occupée !'); return; }
 
   const type = uniteChoisie[j];
-  grille[ligne][col].unite = { joueur: j, type, enDefense: false };
+  grille[ligne][col].unite = { joueur: j, type, bonusForce: 0 }; // bonusForce = 0 au départ
   getCase(ligne, col).appendChild(creerJeton(j, type));
 
   compteurs[j][type]++;
@@ -90,15 +90,13 @@ function demarrerTourJoueur() {
   caseSelectionnee = null;
   effacerSurbrillances();
 
-
-
   const j = joueurActif;
   document.getElementById('affichage-tour').textContent  = `Tour ${numeroTour}`;
   document.getElementById('affichage-phase').textContent = 'Phase : Déplacement';
   document.getElementById('statut-message').textContent  = `Joueur ${j} — déplacez une unité (optionnel)`;
   msg(`Joueur ${j} : déplacez une unité (optionnel) puis choisissez une action obligatoire`);
   majBoutons();
-  majBarreInfo('❓', 'Aucune', '—', 'Choisissez une unité');
+  majBarreInfo(ICONES.vide, 'Aucune unité', '—', 'Choisissez une unité');
 }
 
 // ── Clic sur la grille en phase jeu ───────────────────────
@@ -246,14 +244,12 @@ function activerDefense() {
 
   const { ligne, col } = caseSelectionnee;
   const unite = grille[ligne][col].unite;
-
-  // Ajouter +1 permanent à la force de l'unité (comme les cases bonus)
-  unite.bonusForce = (unite.bonusForce || 0) + 1;
+  unite.bonusForce = (unite.bonusForce || 0) + 1; // +1 force permanent comme les cases bonus
 
   const jeton = getCase(ligne, col).querySelector('.jeton');
   if (jeton) jeton.classList.add('jeton-defend');
 
-  historique(`J${joueurActif} — ${NOMS[unite.type]} en (${ligne},${col}) se défend → force : ${forceReelle(unite)}`);
+  historique(`J${joueurActif} — ${NOMS[unite.type]} en (${ligne},${col}) se défend (+1 force)`);
   msg('Unité en défense ! (+1 force pour résister)');
   setTimeout(finDeTourJoueur, 700);
 }
@@ -336,7 +332,7 @@ function demarrerCombat(posAtt, posDef) {
   document.getElementById('detail-att').textContent =
     `${ICONES[uniteAtt.type]} ${NOMS[uniteAtt.type]} · Force : ${FORCE[uniteAtt.type] + (uniteAtt.bonusForce || 0)}`;
   document.getElementById('detail-def').textContent =
-    `${ICONES[uniteDef.type]} ${NOMS[uniteDef.type]} · Force : ${FORCE[uniteDef.type] + (uniteDef.bonusForce || 0)}${uniteDef.enDefense ? ' +1 (défense)' : ''}`;
+    `${ICONES[uniteDef.type]} ${NOMS[uniteDef.type]} · Force : ${FORCE[uniteDef.type] + (uniteDef.bonusForce || 0)}`;
   document.getElementById('chiffre-combat-att').textContent = '?';
   document.getElementById('chiffre-combat-def').textContent = '?';
   document.getElementById('combat-resultat').textContent    = '';
@@ -390,14 +386,20 @@ function passerDeplacement() {
   document.getElementById('statut-message').textContent  = `Joueur ${joueurActif} — choisissez une action (obligatoire)`;
   msg(`Joueur ${joueurActif} : choisissez Attaquer, Défendre ou Capturer (obligatoire !)`);
   majBoutons();
-  majBarreInfo('❓', 'Aucune', '—', 'Choisissez une action');
+  majBarreInfo(ICONES.vide, 'Aucune unité', '—', 'Choisissez une action');
 }
 
 // ── Fin de tour ────────────────────────────────────────────
 
 function finDeTourJoueur() {
-  // Note : le bonus défense est retiré au DÉBUT du prochain tour
-  // du joueur dans demarrerTourJoueur() — pas ici.
+  // Retirer le bonus défense du joueur actif
+  // Retirer l'effet visuel défense (le bonusForce lui reste acquis)
+  for (let l = 0; l < 8; l++) {
+    for (let c = 0; c < 8; c++) {
+      const jeton = getCase(l, c).querySelector('.jeton');
+      if (jeton) jeton.classList.remove('jeton-defend');
+    }
+  }
 
   effacerSurbrillances();
   caseSelectionnee = null;
