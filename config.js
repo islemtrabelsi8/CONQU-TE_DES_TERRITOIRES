@@ -13,7 +13,7 @@ const NOMS   = { soldat: 'Soldat (S)', cavalier: 'Cavalier (C)', tank: 'Tank (T)
 const FORCE  = { soldat: 2, cavalier: 1, tank: 3 };
 const DEPLACEMENT_MAX = { soldat: 1, cavalier: 2, tank: 1 };
 
-const CASES_BLOQUEES = ['eau'];
+const CASES_BLOQUEES = ['montagne']; // montagne bloque le déplacement — eau donne -1 force comme le piège
 
 // ── Création de la grille ──────────────────────────────────
 
