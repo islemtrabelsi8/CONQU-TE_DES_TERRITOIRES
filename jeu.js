@@ -341,8 +341,8 @@ function demarrerCombat(posAtt, posDef) {
   document.getElementById('chiffre-combat-def').textContent = '?';
   document.getElementById('combat-resultat').textContent    = '';
   document.getElementById('btn-combat-lancer').disabled     = false;
-  dessinerDe('de-combat-att', 1);
-  dessinerDe('de-combat-def', 1);
+  /*dessinerDe('de-combat-att', 1);
+  dessinerDe('de-combat-def', 1);*/
   document.getElementById('modal-combat').style.display = 'flex';
 }
 
