@@ -1,8 +1,11 @@
 
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Joti+One&display=swap');
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; 
+font-family: "Joti One", serif;
+}
 
 /* Couleurs principales utilisées partout */
 :root {
@@ -20,10 +23,11 @@
   --texte-clair:   #a08060;   /* texte discret */
 }
 
+
 body {
   background-color: var(--beige-clair);
   color: var(--texte-fonce);
-  font-family: 'Lora', Georgia, serif;
+  font-family: "Joti One", serif;
   font-size: 14px;
   height: 100vh;
   overflow: hidden;
@@ -233,7 +237,7 @@ body {
   align-items: center;
   background-color: var(--beige-moyen);
   border-bottom: 2px solid var(--beige-fonce);
-  padding: 6px 12px;
+  padding: 3px 12px;
   flex-shrink: 0;
   box-shadow: 0 2px 8px rgba(100, 70, 10, 0.12);
 }
@@ -267,7 +271,7 @@ body {
 .titre-centre { text-align: center; padding: 4px 20px; }
 
 .titre-jeu {
-  font-family: 'Cinzel', serif;
+  
   font-size: 20px;
   font-weight: 700;
   color: var(--texte-fonce);
@@ -323,7 +327,8 @@ body {
 }
 
 .panneau-j1 { border-right: 2px solid var(--beige-fonce); }
-.panneau-j2 { border-left:  2px solid var(--beige-fonce); }
+.panneau-j2 { border-left:  2px solid var(--beige-fonce);
+overflow-y: auto; }
 
 .info-joueur {
   display: flex;
@@ -543,7 +548,7 @@ body {
   background-color: var(--beige-moyen);
   border: 2px solid var(--beige-fonce);
   border-radius: 10px;
-  padding: 8px;
+  padding: 4px;
   box-shadow: 0 4px 20px rgba(100, 70, 10, 0.15);
 }
 
@@ -554,7 +559,7 @@ body {
 }
 
 .coin-vide     { width: 24px; flex-shrink: 0; }
-.etiquette-col { width: 62px; text-align: center; font-size: 10px; color: var(--texte-clair); }
+.etiquette-col { width: 52px; text-align: center; font-size: 10px; color: var(--texte-clair); }
 
 .ligne-grille { display: flex; align-items: center; margin-bottom: 1px; }
 
@@ -568,8 +573,8 @@ body {
 }
 
 .case {
-  width: 62px;
-  height: 62px;
+  width: 52px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -702,7 +707,7 @@ body {
   grid-template-columns: 260px 1fr 200px;
   border-top: 2px solid var(--beige-fonce);
   background-color: var(--beige-moyen);
-  min-height: 110px;
+  min-height: 90px;
   flex-shrink: 0;
   box-shadow: 0 -3px 12px rgba(100, 70, 10, 0.1);
 }
