@@ -399,25 +399,14 @@ overflow-y: auto; }
 
 .unite-ligne:last-child { border-bottom: none; }
 
-.unite-icone {
-  width: 34px;
-  height: 34px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-
 .icone-j1 { background-color: #c8e8e0; border: 1px solid var(--vert-j1); }
 .icone-j2 { background-color: #f0c8d0; border: 1px solid var(--rose-j2); }
 
 .unite-img {
-  width: 32px;          /* taille icône */
-  height: 32px;         /* garde carré */
-  object-fit: contain;  /* évite la déformation */
-  border-radius: 6px;   /* optionnel : coins arrondis */
+  width: 32px;          
+  height: 32px;         
+  object-fit: contain;  
+  border-radius: 6px;   
 
 }
 .unite-details { flex: 1; }
@@ -588,14 +577,14 @@ overflow-y: auto; }
 
 .case:hover { filter: brightness(0.92); }
 
-/* Types de cases — clairs et harmonieux */
-.neutre        { background-color: #d4b870; }   /* ocre doux    */
-.zone-j1       { background-color: #4a8070; }   /* vert sauge   */
-.zone-j2       { background-color: #a04868; }   /* rose bordeaux*/
-.bonus-attaque { background-color: #c87030; }   /* orange terre */
-.bonus-defense { background-color: #4080a0; }   /* bleu canard  */
-.piege         { background-color: #706030; }   /* marron foncé */
-.eau           { background-color: #4090a8; }   /* bleu-vert    */
+/* Types de cases */
+.neutre        { background-color: #d4b870; }   
+.zone-j1       { background-color: #4a8070; }   
+.zone-j2       { background-color: #a04868; }   
+.bonus-attaque { background-color: #c87030; }   
+.bonus-defense { background-color: #4080a0; }   
+.piege         { background-color: #706030; }   
+.eau           { background-color: #4090a8; }   
 
 /* Surbrillances */
 .case-selectionnee {

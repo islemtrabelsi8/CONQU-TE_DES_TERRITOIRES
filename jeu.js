@@ -1,18 +1,10 @@
-// ============================================================
-// jeu.js — Logique complète du jeu
-// Dépend de : config.js, etat.js, ui.js, des.js
-// ============================================================
-
-// ── Point d'entrée global : clic sur une case ──────────────
 
 function clicCase(ligne, col) {
   if (phase === 'placement') placerUnite(ligne, col);
   else if (phase === 'jeu')  clicCaseJeu(ligne, col);
 }
 
-// ============================================================
 // PHASE 2 : PLACEMENT
-// ============================================================
 
 function demarrerPlacement(premier) {
   phase = 'placement';
@@ -34,7 +26,7 @@ function choisirUnite(joueur, type) {
 
   majBarreInfo(ICONES[type], NOMS[type], `Force: ${FORCE[type]} · Joueur ${joueur}`, 'Cliquez sur votre zone');
   document.getElementById(`msg-choix-j${joueur}`).textContent =
-    `${ICONES[type]} sélectionné — cliquez sur votre zone !`;
+  `${NOMS[type]} sélectionné — cliquez sur votre zone !`;
   msg(`Joueur ${joueur} : cliquez sur une case de votre zone pour placer le ${NOMS[type]}`);
 }
 
@@ -71,9 +63,8 @@ function placerUnite(ligne, col) {
   majInterfacePlacement();
 }
 
-// ============================================================
+
 // PHASE 3 : JEU
-// ============================================================
 
 function demarrerJeu() {
   phase = 'jeu';
@@ -329,16 +320,14 @@ function demarrerCombat(posAtt, posDef) {
 
   document.getElementById('combat-att-num').textContent = joueurActif;
   document.getElementById('combat-def-num').textContent = ennemi;
-  document.getElementById('detail-att').textContent =
-    `${ICONES[uniteAtt.type]} ${NOMS[uniteAtt.type]} · Force : ${FORCE[uniteAtt.type] + (uniteAtt.bonusForce || 0)}`;
-  document.getElementById('detail-def').textContent =
-    `${ICONES[uniteDef.type]} ${NOMS[uniteDef.type]} · Force : ${FORCE[uniteDef.type] + (uniteDef.bonusForce || 0)}`;
+document.getElementById('detail-att').textContent =
+  `${NOMS[uniteAtt.type]} · Force : ${FORCE[uniteAtt.type] + (uniteAtt.bonusForce || 0)}`;
+document.getElementById('detail-def').textContent =
+  `${NOMS[uniteDef.type]} · Force : ${FORCE[uniteDef.type] + (uniteDef.bonusForce || 0)}`;
   document.getElementById('chiffre-combat-att').textContent = '?';
   document.getElementById('chiffre-combat-def').textContent = '?';
   document.getElementById('combat-resultat').textContent    = '';
   document.getElementById('btn-combat-lancer').disabled     = false;
-  /*dessinerDe('de-combat-att', 1);
-  dessinerDe('de-combat-def', 1);*/
   document.getElementById('modal-combat').style.display = 'flex';
 }
 
@@ -416,7 +405,7 @@ function finDeTourJoueur() {
 
 function verifierVictoire() {
   for (const j of [1, 2]) {
-    if (casesControlees[j] >= 33) {
+    if (casesControlees[j] >= 32) {
       annoncerVictoire(j, `contrôle de ${casesControlees[j]} cases`); return;
     }
   }
@@ -429,11 +418,20 @@ function verifierVictoire() {
 }
 
 function annoncerVictoire(joueur, raison) {
-  document.getElementById('statut-message').textContent = `🏆 JOUEUR ${joueur} A GAGNÉ !`;
-  document.getElementById('statut-message').style.color = joueur === 1 ? '#8fce60' : '#e07070';
-  msg(`🏆 Joueur ${joueur} remporte la partie ! (${raison})`);
-  historique(`=== 🏆 VICTOIRE DU JOUEUR ${joueur} (${raison}) ===`);
   phase = 'termine';
+
+  const couleur  = joueur === 1 ? '#3a7060' : '#a04060';
+  const emoji    = joueur === 1 ? '🧙' : '🧝';
+
+  document.getElementById('victoire-titre').textContent   = `🏆 JOUEUR ${joueur} A GAGNÉ !`;
+  document.getElementById('victoire-titre').style.color   = couleur;
+  document.getElementById('victoire-raison').textContent  = raison;
+  document.getElementById('victoire-emoji').textContent   = emoji;
+  document.getElementById('victoire-message').textContent =
+    `Joueur ${joueur} remporte la conquête des territoires !`;
+
+  document.getElementById('modal-victoire').style.display = 'flex';
+  historique(`=== 🏆 VICTOIRE DU JOUEUR ${joueur} (${raison}) ===`);
   document.getElementById('zone-boutons-action').style.display = 'none';
 }
 

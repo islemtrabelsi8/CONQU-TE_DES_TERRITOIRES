@@ -1,9 +1,3 @@
-// ============================================================
-// ui.js — Fonctions d'affichage et de manipulation du DOM
-// Dépend de : config.js, etat.js
-// ============================================================
-
-// ── Messages ───────────────────────────────────────────────
 
 function msg(texte) {
   document.getElementById('instructions').textContent = texte;

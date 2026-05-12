@@ -43,7 +43,7 @@ function verifierGagnant() {
         resultat.textContent = '👑 Joueur 2 commence !';
         setTimeout(() => { document.getElementById('modal-de').style.display = 'none'; demarrerPlacement(2); }, 1800);
     } else {
-        resultat.textContent = '⚔ Egalité ! Relancez !';
+        resultat.textContent = 'Egalité ! Relancez !';
         valeurJ1 = null;
         valeurJ2 = null;
         setTimeout(() => {
@@ -60,6 +60,7 @@ function lancerCombat() {
     document.getElementById('btn-combat-lancer').disabled = true;
 
     const { posAtt, posDef, uniteAtt, uniteDef } = combatInfo;
+    const attaquant = joueurActif;
 
     const deAtt = Math.floor(Math.random() * 6) + 1;
     const deDef = Math.floor(Math.random() * 6) + 1;
@@ -94,7 +95,7 @@ function lancerCombat() {
             }, 1500);
 
         } else {
-            resultatEl.textContent = `💥 Égalité ! Les deux unités sont détruites !`;
+            resultatEl.textContent = `Égalité ! Les deux unités sont détruites !`;
             setTimeout(() => {
                 document.getElementById('modal-combat').style.display = 'none';
                 retirerJeton(posAtt.ligne, posAtt.col);
