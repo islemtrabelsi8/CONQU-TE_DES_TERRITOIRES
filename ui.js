@@ -12,8 +12,7 @@ function historique(texte) {
   liste.scrollTop = liste.scrollHeight;
 }
 
-// ── Barre d'info de l'unité sélectionnée ──────────────────
-
+// Barre d'info de l'unité sélectionnée 
 function majBarreInfo(icone, nom, info, statut) {
 document.getElementById('sel-icone').innerHTML = `<img src="${icone}" class="unite-img">`;
   document.getElementById('sel-nom').textContent    = nom;
@@ -21,8 +20,7 @@ document.getElementById('sel-icone').innerHTML = `<img src="${icone}" class="uni
   document.getElementById('sel-statut').textContent = statut;
 }
 
-// ── Boutons d'action ───────────────────────────────────────
-
+// Boutons d'action 
 function majBoutons() {
   document.getElementById('btn-deplacer').disabled   = etape !== 'deplacement';
   document.getElementById('btn-attaquer').disabled   = etape !== 'action';
@@ -37,7 +35,7 @@ function majBoutons() {
   if (action === 'capturer') document.getElementById('btn-capturer').classList.add('btn-actif');
 }
 
-// ── Interface de placement ─────────────────────────────────
+//  Interface de placement 
 
 function majInterfacePlacement() {
   const j     = joueurActif;
@@ -59,7 +57,7 @@ majBarreInfo(
 );
 }
 
-// ── Surbrillances sur la grille ────────────────────────────
+// Surbrillances sur la grille 
 
 function surbrillance(ligne, col, type) {
   const el = getCase(ligne, col);
@@ -74,7 +72,7 @@ function effacerSurbrillances() {
     .forEach(el => el.classList.remove('case-selectionnee', 'case-possible', 'case-attaquable'));
 }
 
-// ── Jetons (pions sur la grille) ───────────────────────────
+//  Jetons (pions sur la grille) 
 
 function creerJeton(joueur, type) {
   const jeton = document.createElement('div');
@@ -94,13 +92,13 @@ function retirerJeton(ligne, col) {
   if (jeton) jeton.remove();
 }
 
-// ── Accès aux cases DOM ────────────────────────────────────
+//  Accès aux cases DOM 
 
 function getCase(ligne, col) {
   return document.querySelector(`.case[data-ligne="${ligne}"][data-col="${col}"]`);
 }
 
-// ── Utilitaire : force réelle d'une unité ──────────────────
+// Utilitaire : force réelle d'une unité 
 
 function forceReelle(unite) {
   return FORCE[unite.type] + (unite.bonusForce || 0);

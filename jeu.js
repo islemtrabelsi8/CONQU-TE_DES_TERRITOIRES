@@ -97,7 +97,7 @@ function clicCaseJeu(ligne, col) {
   else if (etape === 'action') gererAction(ligne, col);
 }
 
-// ── Déplacement ────────────────────────────────────────────
+//  Déplacement 
 
 function gererDeplacement(ligne, col) {
   const caseGrille = grille[ligne][col];
@@ -119,20 +119,20 @@ function gererDeplacement(ligne, col) {
 
   const sel = caseSelectionnee;
 
-  // Re-clic sur la même case → désélectionner
+  // Reclic sur la même case -> désélectionner
   if (ligne === sel.ligne && col === sel.col) {
     caseSelectionnee = null;
     effacerSurbrillances();
     return;
   }
 
-  // Clic sur une case verte → déplacer
+  // Clic sur une case verte -> déplacer
   if (getCase(ligne, col).classList.contains('case-possible')) {
     deplacerUnite(sel.ligne, sel.col, ligne, col);
     return;
   }
 
-  // Clic sur une autre unité alliée → changer de sélection
+  // Clic sur une autre unité alliée -> changer de sélection
   if (caseGrille.unite && caseGrille.unite.joueur === joueurActif) {
     effacerSurbrillances();
     caseSelectionnee = { ligne, col };
@@ -188,7 +188,7 @@ function deplacerUnite(deL, deC, versL, versC) {
   majBoutons();
 }
 
-// ── Effet des cases spéciales ──────────────────────────────
+//  Effet des cases spéciales 
 
 function appliquerEffetCase(typeCase, unite) {
   if (typeCase === 'bonus-attaque') {
@@ -210,7 +210,7 @@ function appliquerEffetCase(typeCase, unite) {
   }
 }
 
-// ── Actions ────────────────────────────────────────────────
+//  Actions 
 
 function activerAttaque() {
   if (etape !== 'action') return;
@@ -286,7 +286,7 @@ function gererAction(ligne, col) {
   }
 }
 
-// ── Capturer une case ──────────────────────────────────────
+//  Capturer une case 
 
 function capturerCase(ligne, col) {
   const ancienProp = grille[ligne][col].proprietaire;
@@ -309,7 +309,7 @@ function capturerCase(ligne, col) {
   setTimeout(finDeTourJoueur, 600);
 }
 
-// ── Combat ─────────────────────────────────────────────────
+//  Combat 
 
 function demarrerCombat(posAtt, posDef) {
   const uniteAtt = grille[posAtt.ligne][posAtt.col].unite;
@@ -364,7 +364,7 @@ function appliquerVictoireCombat(posAtt, posDef, uniteAtt, uniteDef) {
   setTimeout(finDeTourJoueur, 400);
 }
 
-// ── Passer le déplacement (optionnel) ─────────────────────
+//  Passer le déplacement (optionnel) 
 
 function passerDeplacement() {
   if (phase !== 'jeu' || etape !== 'deplacement') return;
@@ -378,7 +378,7 @@ function passerDeplacement() {
   majBarreInfo(ICONES.vide, 'Aucune unité', '—', 'Choisissez une action');
 }
 
-// ── Fin de tour ────────────────────────────────────────────
+//  Fin de tour 
 
 function finDeTourJoueur() {
   // Retirer le bonus défense du joueur actif
@@ -401,7 +401,7 @@ function finDeTourJoueur() {
   demarrerTourJoueur();
 }
 
-// ── Victoire ───────────────────────────────────────────────
+//  Victoire 
 
 function verifierVictoire() {
   for (const j of [1, 2]) {
@@ -435,7 +435,7 @@ function annoncerVictoire(joueur, raison) {
   document.getElementById('zone-boutons-action').style.display = 'none';
 }
 
-// ── Utilitaire : voisins ennemis ───────────────────────────
+// voisins ennemis
 
 function getVoisinsEnnemis(ligne, col) {
   return [[ligne-1,col],[ligne+1,col],[ligne,col-1],[ligne,col+1]]

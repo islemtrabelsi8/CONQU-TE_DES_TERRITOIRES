@@ -1,5 +1,5 @@
 
-// config.js — Constantes fixes et création de la grille
+//  Constantes fixes et création de la grille
 
 const ICONES = {
   soldat: 'assets/soldat.png',
@@ -7,17 +7,11 @@ const ICONES = {
   tank: 'assets/militaire.png',
   vide: 'assets/question.png'
 };
-const NOMS   = { soldat: 'Soldat (S)', 
-                  cavalier: 'Cavalier (C)',
-                  tank: 'Tank (T)' };
-const FORCE  = { soldat: 2, 
-                cavalier: 1,
-                 tank: 3 };
-const DEPLACEMENT_MAX = { soldat: 1,
-                           cavalier: 2,
-                            tank: 1 };
+const NOMS   = { soldat: 'Soldat (S)',   cavalier: 'Cavalier (C)',   tank: 'Tank (T)' };
+const FORCE  = { soldat: 2,  cavalier: 1, tank: 3 };
+const DEPLACEMENT_MAX = { soldat: 1,  cavalier: 2,  tank: 1 };
 
-// ── Création de la grille ──────────────────────────────────
+// Création de la grille 
 
 const CASES_SPECIALES = {
   '2-5': 'bonus-attaque',

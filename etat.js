@@ -37,24 +37,24 @@ let numeroTour  = 1;
 let etape       = null;   // 'deplacement' ou 'action'
 let action      = null;   // 'attaquer' | 'capturer' | null
 
-// ── Sélection en cours 
+//  Sélection en cours 
 let caseSelectionnee = null;   // { ligne, col }
 let combatInfo       = null;   // données du combat en cours
 
-// ── Placement 
+//  Placement 
 const unitesPlacees  = { 1: 0, 2: 0 };
 const unitesVivantes = { 1: 0, 2: 0 };
 const uniteChoisie   = { 1: null, 2: null };
 
-// ── Compteurs d'unités par type ───────────────────────────
+//  Compteurs d'unités par type 
 const compteurs = {
   1: { soldat: 0, cavalier: 0, tank: 0 },
   2: { soldat: 0, cavalier: 0, tank: 0 }
 };
 
-// ── Cases contrôlées par joueur ───────────────────────────
+//  Cases contrôlées par joueur 
 const casesControlees = { 1: 16, 2: 16 };
 
-// ── Dés initiaux (phase 'des') ────────────────────────────
+//  Dés initiaux (phase 'des') 
 let deInitialJ1 = null;
 let deInitialJ2 = null;
